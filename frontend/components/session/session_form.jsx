@@ -25,6 +25,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <div className="session-form">
         <h2>{this.props.formType}</h2>
