@@ -38,5 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   const root = document.getElementById("root");
-  ReactDOM.render(<Root store={store} />, root);
+  // ReactDOM.render(<Root store={store} />, root);
+  ReactDOM.render(<h1>Welcome to Interview Prepper</h1>, root);
 });
