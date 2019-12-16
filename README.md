@@ -22,8 +22,15 @@ MVP's:
   3. Log new entry page: Users will be able to log new entries for problems, and specify the category using a dropdown menu with choices: leetcode, trivia, behavioral, other/misc. User submission forms should be able to include text, images, and code snippets.
   3. Review page: Section for reviewing past day/week problems for whiteboarding practice to solidify understanding & practice interviewing
     * This will randomly grab a question from the selected category of covered material from either the previous day, week, or any specific time period
-  5. Show page: Displays the selected specific problem text and image if it exists, as wel as the submitted answer that is initially hidden, but can be revealed upon clicking a "show answer" button
+  5. Show page: Displays the selected specific problem text and image if it exists, as well as the submitted answer that is initially hidden, but can be revealed upon clicking a "show answer" button
   6. Users will be able to join groups that share submitted questions
 
 Database Table Entries:
   * users, familiarity_categories, problem_categories, submitted_problems, groups, comments, 
+  * groups joins table:
+    * will have many users, many users belong to a group
+    * comments: author_id, body, problem_id
+    * submitted_problems: 
+      * belongs_to categories, 
+    * categories: 
+      * has_many submitted_problems, 

@@ -1,4 +1,4 @@
-require 'open-uri'
+# require 'open-uri'
 
 json.extract! user, :username, :id
 # json.projectIds user.projects.pluck(:id)
