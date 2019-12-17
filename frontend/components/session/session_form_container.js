@@ -5,13 +5,13 @@ import SessionForm from "./session_form";
 const msp = state => {
   return {
     errors: state.errors.session,
-    formType: "Create an account",
   };
 };
 
 const mdp = dispatch => {
   return {
-    processForm: userForm => dispatch(signup(userForm)),
+    processSignupForm: userForm => dispatch(signup(userForm)),
+    processLoginForm: userForm => dispatch(login(userForm)),
     clearErrors: () => dispatch(clearErrors()),
   };
 };

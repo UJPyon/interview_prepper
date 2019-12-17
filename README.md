@@ -145,12 +145,12 @@ Sample state shape:
     categories: {
       0: {
         id: 0,
-        name: "Behavioral Questions",
+        name: "Behavioral",
         submissionIds: [0,1,2,3],
       },
       1: {
         id: 1,
-        name: "JavaScript Trivia",
+        name: "JavaScript",
         submissionIds: [4,5,6,7],
       },
       2: {
@@ -160,7 +160,7 @@ Sample state shape:
       },
       3: {
         id: 3,
-        name: "Ruby",
+        name: "Ruby/Rails",
         submissionIds: [11,12],
       },
       4: {
@@ -172,6 +172,21 @@ Sample state shape:
         id: 5,
         name: "Python",
         submissionIds: [15,16,17],
+      },
+      6: {
+        id: 6,
+        name: "System Design",
+        submissionIds: [18,19],
+      },
+      7: {
+        id: 7,
+        name: "Java",
+        submissionIds: [22,23],
+      },
+      8: {
+        id: 8,
+        name: "Other",
+        submissionIds: [20,21]
       }
     },
 
@@ -221,13 +236,16 @@ Sample state shape:
 
 Users will be able to:
   * Submit new problems/questions under a chosen category (provide a form with 
-    the question and their solution/answer, select category from dropdown)
-  * Create new categories (Limit cap: 50 per group, always start with default set)
+    the question and their solution/answer, select category from dropdown. ALWAYS
+    starts in the lowest box)
   * View previously submitted problems (have access to all submissions individually
-    and by the group; store submission info per individual user)
-  * Move submitted problems up or down the Leitner Box chain (either )
-  * Create comments(or notes) on submissions 
+    and be able to view on a show page for each one)
+  * Edit previously submitted problems/questions
+  * Move submitted problems up or down the Leitner Box chain (decided by which button
+    is clicked when at a particular problem after revealing the answer)
   * Be able to set submissions as public or private (boolean setting in state, if true
     then submission will be shown on the main index page)
-  * Search all submissions, only user-submitted and public problems
+
+
   * FUTURE: Create new groups (creator becomes Admin)
+  * Create comments(or notes) on submissions 

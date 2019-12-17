@@ -1,17 +1,13 @@
 export const findUser = id => {
-  return (
-    $.ajax({
+  return $.ajax({
       method: 'GET',
       url: `api/users/${id}`,
-    })
-  );
+    });
 };
 
 export const getAllUsers = () => {
-  return (
-    $.ajax({
+  return $.ajax({
       method: 'GET',
       url: 'api/users',
-    })
-  );
+    });
 };

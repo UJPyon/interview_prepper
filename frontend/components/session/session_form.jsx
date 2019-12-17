@@ -5,17 +5,32 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      loginUsername: "",
+      loginPassword: "",
+      signupUsername: "",
+      signupPassword: "",
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
     this.update = this.update.bind(this);
   }
 
-  handleSubmit(e) {
+  handleLogin(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user).then(() => this.props.history.push('/dash'));
+    const user = {
+      username: this.state.loginUsername,
+      password: this.state.loginPassword,
+    };
+    this.props.processLoginForm(user).then(() => this.props.history.push('/learn'));
+  }
+  
+  handleSignup(e) {
+    e.preventDefault();
+    const user = {
+      username: this.state.signupUsername,
+      password: this.state.signupPassword,
+    };
+    this.props.processSignupForm(user).then(() => this.props.history.push('/learn'));
   }
 
   update(field) {
@@ -28,23 +43,42 @@ class SessionForm extends React.Component {
     debugger
     return (
       <div className="session-form">
-        <h2>{this.props.formType}</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <input 
-            id="username"
+        <h2>Login to your account</h2>
+        <form onSubmit={this.handleLogin}>
+          <label htmlFor="login-username">Username</label>
+          <input
+            id="login-username"
             type="text"
-            onChange={this.update("username")}
+            onChange={this.update("loginUsername")}
           />
-          <label htmlFor="password">Password</label>
-          <input 
-            id="password"
+          <label htmlFor="login-password">Password</label>
+          <input
+            id="login-password"
             type="password"
-            onChange={this.update("password")}
+            onChange={this.update("loginPassword")}
           />
-          <input 
+          <input
             type="submit"
-            value="Submit"
+            value="Login"
+          />
+        </form>
+
+        <form onSubmit={this.handleSignup}>
+          <label htmlFor="signup-username">Username</label>
+          <input
+            id="signup-username"
+            type="text"
+            onChange={this.update("signupUsername")}
+          />
+          <label htmlFor="signup-password">Password</label>
+          <input
+            id="signup-password"
+            type="password"
+            onChange={this.update("signupPassword")}
+          />
+          <input
+            type="submit"
+            value="Sign Up"
           />
         </form>
       </div>

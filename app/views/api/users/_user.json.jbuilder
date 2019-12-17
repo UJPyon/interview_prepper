@@ -1,5 +1,5 @@
 # require 'open-uri'
-
+debugger
 json.extract! user, :username, :id
 # json.projectIds user.projects.pluck(:id)
 # json.appreciatedProjectIds user.appreciated_projects.pluck(:id)
