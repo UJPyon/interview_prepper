@@ -947,6 +947,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postSession", function() { return postSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSession", function() { return deleteSession; });
 var postUser = function postUser(user) {
+  debugger;
   return $.ajax({
     method: "POST",
     url: "api/users",
@@ -956,6 +957,7 @@ var postUser = function postUser(user) {
   });
 };
 var postSession = function postSession(user) {
+  debugger;
   return $.ajax({
     method: "POST",
     url: "api/session",

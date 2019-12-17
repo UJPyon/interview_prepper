@@ -1,4 +1,5 @@
 export const postUser = function(user) {
+  debugger
   return $.ajax({
     method: "POST",
     url: "api/users",
@@ -7,6 +8,7 @@ export const postUser = function(user) {
 };
 
 export const postSession = function(user) {
+  debugger
   return $.ajax({
     method: "POST",
     url: "api/session",
