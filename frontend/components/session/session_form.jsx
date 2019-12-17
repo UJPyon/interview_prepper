@@ -40,7 +40,6 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <div className="session-form">
         <h2>Login to your account</h2>

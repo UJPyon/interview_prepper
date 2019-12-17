@@ -497,7 +497,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Login to your account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -770,9 +769,9 @@ var _nullSession = {
 };
 
 var sessionReducer = function sessionReducer() {
-  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
   var action = arguments.length > 1 ? arguments[1] : undefined;
-  Object.freeze(oldState);
+  Object.freeze(state);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
@@ -784,7 +783,7 @@ var sessionReducer = function sessionReducer() {
       return _nullSession;
 
     default:
-      return oldState;
+      return state;
   }
 };
 
