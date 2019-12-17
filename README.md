@@ -27,13 +27,15 @@ MVP's:
 
 Database Table Entries:
   * users, familiarity_categories, problem_categories, submitted_problems, groups, comments, 
-  * groups joins table:
+  * 
+  * groups:
     * will have many users, many users belong to a group
     * comments: author_id, body, problem_id
     * submitted_problems: 
       * belongs_to categories, 
     * categories: 
       * has_many submitted_problems, 
+  * comments:
 
 
 
@@ -57,12 +59,12 @@ belongs_to :submittor, polymorphic: true
 User
 has_many :submitted_problems, as: :submittor
 
-Group
-has_many :submitted_problems, as: :submittor
+Category
+has_many :submitted_problems, as :submittor
 
 create_table :submissions do |t|
   t.string :title
-  t.references :submission, polymorphic: true
+  t.references :submittor, polymorphic: true
   t.string :body
   t.string :answer
   t.timestamps
@@ -102,45 +104,130 @@ constructor(): this.head = null, this.tail = null, this.length = 0
                       is true or false, it will be added to the array in either the previous
                       or next node's array value
 
+Sample state shape:
 
-state shape:
 {
   entities: {
     users: {
       0: {
         id: 0,
         username: "User1",
-        submittedProblemIds: [1,2,3,4],
-        commentIds: [],
+        submissionIds: [1,2,3,4],
+        commentIds: [0],
+      },
+      1: {
+        id: 1,
+        username: "User2",
+        submissionIds: [5,6,7],
+        commentIds: [1],
       }
     },
+
     submissions: {
       0: {
         id: 0,
         title: "Two Sum",
         body: "Write an algorithm for two sum",
         answer: "some 2-sum algorithm",
-        submittorId: 0,
-        groupId: 0,
+        userId: 0,
+        categoryId: 2,
       },
       1: {
         id: 1,
         title: "Personal Pitch",
         body: "Tell me about yourself",
         answer: "I'm a software engineer, hire me pls",
-        submittorId: 0,
-        groupId: 0,
+        userId: 1,
+        categoryId: 0,
       }
     },
-    groups: {
+
+    categories: {
       0: {
         id: 0,
-
+        name: "Behavioral Questions",
+        submissionIds: [0,1,2,3],
       },
       1: {
         id: 1,
-        
+        name: "JavaScript Trivia",
+        submissionIds: [4,5,6,7],
+      },
+      2: {
+        id: 2,
+        name: "Leetcode Problems",
+        submissionIds: [8,9,10],
+      },
+      3: {
+        id: 3,
+        name: "Ruby",
+        submissionIds: [11,12],
+      },
+      4: {
+        id: 4,
+        name: "React/Redux",
+        submissionIds: [13,14],
+      },
+      5: {
+        id: 5,
+        name: "Python",
+        submissionIds: [15,16,17],
+      }
+    },
+
+    comments: {
+      0: {
+        id: 0,
+        authorId: 0,
+        groupId: 0,
+        body: "Let's practice this one tomorrow",
+      },
+      1: {
+        id: 1,
+        authorId: 1,
+        groupId: 1,
+        body: "I don't get this",
+      }
+    },
+
+    boxes: {
+      0: {
+        title: "Problems to Review Every Day",
+        prevId: null,
+        nextId: 1,
+        submissionIds: [0,1,2,3]
+      },
+      1: {
+        title: "Problems to Review on Tues/Thurs",
+        prevId: 0,
+        nextId: 1,
+        submissionIds: [4,5,6]
+      },
+      2: {
+        title: "Problems to Review on Fri",
+        prevId: 2, 
+        nextId: 3,
+        submissionIds: [7,8,9]
+      },
+      3: {
+        title: "Problems to Review Every Month",
+        prevId: 3, 
+        nextId: null,
+        submissionIds: [10,11,12]
       }
     }
   }
 }
+
+Users will be able to:
+  * Submit new problems/questions under a chosen category (provide a form with 
+    the question and their solution/answer, select category from dropdown)
+  * Create new categories (Limit cap: 50 per group, always start with default set)
+  * View previously submitted problems (have access to all submissions individually
+    and by the group; store submission info per individual user)
+  * Move submitted problems up or down the Leitner Box chain (either )
+  * Create comments(or notes) on submissions 
+  * Be able to set submissions as public or private (boolean setting in state, if true
+    then submission will be shown on the main index page)
+  * Search all submissions, only user-submitted and public problems
+  * FUTURE: Create new groups (creator becomes Admin)
