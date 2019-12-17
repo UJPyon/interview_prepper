@@ -448,9 +448,9 @@ function (_React$Component) {
     _this.state = {
       loginUsername: "",
       loginPassword: "",
-      loginError: "Sorry, we do not recognize your credentials.",
       signupUsername: "",
       signupPassword: "",
+      loginError: "Sorry, we do not recognize your credentials",
       signupError1: "An account with this username already exists",
       signupError2: "Password must be at least 6 characters",
       signupError3: "Please enter a username"

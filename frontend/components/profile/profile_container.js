@@ -3,7 +3,7 @@ import Profile from "./profile";
 
 const msp = state => {
   return {
-    user: state.
+    // user: state.
     errors: state.errors.session
   };
 };
