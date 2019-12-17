@@ -321,7 +321,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "You are logged in."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleLogout
-      }));
+      }, "Log Out"));
     }
   }]);
 
@@ -448,12 +448,18 @@ function (_React$Component) {
     _this.state = {
       loginUsername: "",
       loginPassword: "",
+      loginError: "Sorry, we do not recognize your credentials.",
       signupUsername: "",
-      signupPassword: ""
+      signupPassword: "",
+      signupError1: "An account with this username already exists",
+      signupError2: "Password must be at least 6 characters",
+      signupError3: "Please enter a username"
     };
     _this.handleLogin = _this.handleLogin.bind(_assertThisInitialized(_this));
     _this.handleSignup = _this.handleSignup.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.errorDoesExist = _this.errorDoesExist.bind(_assertThisInitialized(_this));
+    _this.inputBorderType = _this.inputBorderType.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -493,44 +499,75 @@ function (_React$Component) {
       return function (e) {
         _this4.setState(_defineProperty({}, field, e.target.value));
       };
+    } // --Method for displaying errors if it exists, or an empty placeholder if it doesn't
+
+  }, {
+    key: "errorDoesExist",
+    value: function errorDoesExist(errorMsg) {
+      var additErrorMsg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (this.props.errors.includes(errorMsg)) {
+        return errorMsg;
+      } else if (this.props.errors.includes(additErrorMsg)) {
+        return additErrorMsg;
+      } else {
+        return null;
+      }
+    } // --Method to display form input classes with or without errors
+
+  }, {
+    key: "inputBorderType",
+    value: function inputBorderType(errorMsg) {
+      var additErrorMsg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (this.props.errors.includes(errorMsg) || this.props.errors.includes(additErrorMsg)) {
+        return "error-";
+      } else {
+        return "";
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Login to your account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      var loginInputClass = this.inputBorderType(this.state.loginError) + "session-input";
+      var loginErrorMsg = this.errorDoesExist(this.state.loginError);
+      var signupUsernameInputClass = this.inputBorderType(this.state.signupError1, this.state.signupError3) + "session-input";
+      var signupPasswordInputClass = this.inputBorderType(this.state.signupError2) + "session-input";
+      var signupUsernameErrorMsg = this.errorDoesExist(this.state.signupError1, this.state.signupError3);
+      var signupPasswordErrorMsg = this.errorDoesExist(this.state.signupError2);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "session"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Let's Get Back to Studying"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, loginErrorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "session-form",
         onSubmit: this.handleLogin
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "login-username"
-      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "login-username",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: loginInputClass,
         type: "text",
-        onChange: this.update("loginUsername")
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "login-password"
-      }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "login-password",
+        onChange: this.update("loginUsername"),
+        placeholder: "Username"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: loginInputClass,
         type: "password",
-        onChange: this.update("loginPassword")
+        onChange: this.update("loginPassword"),
+        placeholder: "Password"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Login"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sign Up for Free"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, signupUsernameErrorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "session-form",
         onSubmit: this.handleSignup
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "signup-username"
-      }, "Username"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "signup-username",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: signupUsernameInputClass,
         type: "text",
-        onChange: this.update("signupUsername")
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "signup-password"
-      }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "signup-password",
+        onChange: this.update("signupUsername"),
+        placeholder: "Enter a New Username"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, signupPasswordErrorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: signupPasswordInputClass,
         type: "password",
-        onChange: this.update("signupPassword")
+        onChange: this.update("signupPassword"),
+        placeholder: "Create a New Password"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-button",
         type: "submit",
         value: "Sign Up"
       })));
@@ -922,7 +959,6 @@ var Protected = function Protected(_ref2) {
 };
 
 var msp = function msp(state) {
-  debugger;
   return {
     loggedIn: Boolean(state.session.id)
   };
@@ -946,7 +982,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postSession", function() { return postSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSession", function() { return deleteSession; });
 var postUser = function postUser(user) {
-  debugger;
   return $.ajax({
     method: "POST",
     url: "api/users",
@@ -956,7 +991,6 @@ var postUser = function postUser(user) {
   });
 };
 var postSession = function postSession(user) {
-  debugger;
   return $.ajax({
     method: "POST",
     url: "api/session",

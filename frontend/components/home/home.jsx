@@ -15,7 +15,7 @@ class Home extends React.Component {
     return (
       <>
         <h1>You are logged in.</h1>
-        <button onClick={this.handleLogout}></button>
+        <button onClick={this.handleLogout}>Log Out</button>
       </>
     );
   }

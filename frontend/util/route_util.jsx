@@ -19,7 +19,6 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
 );
 
 const msp = state => {
-  debugger
   return { loggedIn: Boolean(state.session.id) };
 };
 

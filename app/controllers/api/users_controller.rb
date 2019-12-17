@@ -2,14 +2,22 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    debugger
     if @user.save
-      debugger
       login!(@user) 
       render 'api/users/show'
     else
-      debugger
-      render json: @user.errors.full_messages, status: 401
+      errors = @user.errors.full_messages.map do |error|
+        if error == "Username can't be blank"
+          error = "Please enter a username"
+        elsif error == "Password is too short (minimum is 6 characters)"
+          error = "Password must be at least 6 characters"
+        elsif error == "Username has already been taken"
+          error = "An account with this username already exists"
+        else
+          error
+        end
+      end
+      render json: errors, status: 401
     end
   end
 
@@ -30,7 +38,6 @@ class Api::UsersController < ApplicationController
   private 
   
   def user_params
-    debugger
     params.require(:user).permit(:username, :password) 
   end
 
