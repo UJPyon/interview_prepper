@@ -34,3 +34,113 @@ Database Table Entries:
       * belongs_to categories, 
     * categories: 
       * has_many submitted_problems, 
+
+
+
+Leitner Method System of Studying:
+  * Doubly-linked list of "boxes": 
+    * Box 1: Review every day
+    * Box 2: Review Tues & Thurs
+    * Box 3: Review Fri
+    * Box 4: Review at the end of the month
+  
+
+
+%----------------------------------------------------%
+ Database stores the submitted_problems with the
+ appropriate associations
+%----------------------------------------------------%
+
+Submission
+belongs_to :submittor, polymorphic: true
+
+User
+has_many :submitted_problems, as: :submittor
+
+Group
+has_many :submitted_problems, as: :submittor
+
+create_table :submissions do |t|
+  t.string :title
+  t.references :submission, polymorphic: true
+  t.string :body
+  t.string :answer
+  t.timestamps
+end
+
+
+%---------------------------------------------------------%
+ When the submitted_problems are fetched from the backend 
+ via AJAX requests, it'll then be organized into a 
+ doubly-linked-list to be used as Leitner boxes:
+%---------------------------------------------------------%
+
+[A,B,C]       [D,E]         [F]          [G]
+|------| --> |------| --> |------| --> |------|
+| Box1 |     | Box2 |     | Box3 |     | Box4 |
+|______| <-- |______| <-- |______| <-- |______|
+ Every        Tues,        Fri          Monthly
+ Day          Thurs
+
+class Box_Node
+constructor(array): this.next = null, this.prev = null, this.value = array
+
+class Doubly_Linked_List
+constructor(): this.head = null, this.tail = null, this.length = 0
+- def add_to_tail(array = [])
+- def remove_tail()
+- def add_to_head(array = [])
+- def remove_head()
+- def contains(target)
+- def get(index)
+- def set(index, val)
+- def insert(index, val)
+- def remove(index)
+- def size()
+- def move(target) => this method should find the node where the given problem exists,
+                      remove it from that node, then, depending on whether an input "success"
+                      is true or false, it will be added to the array in either the previous
+                      or next node's array value
+
+
+state shape:
+{
+  entities: {
+    users: {
+      0: {
+        id: 0,
+        username: "User1",
+        submittedProblemIds: [1,2,3,4],
+        commentIds: [],
+      }
+    },
+    submissions: {
+      0: {
+        id: 0,
+        title: "Two Sum",
+        body: "Write an algorithm for two sum",
+        answer: "some 2-sum algorithm",
+        submittorId: 0,
+        groupId: 0,
+      },
+      1: {
+        id: 1,
+        title: "Personal Pitch",
+        body: "Tell me about yourself",
+        answer: "I'm a software engineer, hire me pls",
+        submittorId: 0,
+        groupId: 0,
+      }
+    },
+    groups: {
+      0: {
+        id: 0,
+
+      },
+      1: {
+        id: 1,
+        
+      }
+    }
+  }
+}
