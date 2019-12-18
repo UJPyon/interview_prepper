@@ -1,0 +1,1 @@
+json.partial! 'api/boxes/box', box: @box 
