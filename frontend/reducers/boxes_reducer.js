@@ -1,8 +1,4 @@
-import {
-  FETCH_BOX,
-  FETCH_ALL_BOXES,
-  DELETE_BOX
-} from "../actions/box_actions";
+import { FETCH_BOX, FETCH_ALL_BOXES, DELETE_BOX } from "../actions/box_actions";
 import { merge } from "lodash";
 
 const boxesReducer = (state = {}, action) => {

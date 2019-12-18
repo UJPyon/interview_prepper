@@ -86,6 +86,87 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/box_actions.js":
+/*!*****************************************!*\
+  !*** ./frontend/actions/box_actions.js ***!
+  \*****************************************/
+/*! exports provided: FETCH_BOX, FETCH_ALL_BOXES, DELETE_BOX, fetchBox, fetchAllBoxes, removeBox, receiveBox, receiveAllBoxes, createNewBox, updateExistingBox, deleteBox */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_BOX", function() { return FETCH_BOX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_ALL_BOXES", function() { return FETCH_ALL_BOXES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_BOX", function() { return DELETE_BOX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBox", function() { return fetchBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllBoxes", function() { return fetchAllBoxes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeBox", function() { return removeBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBox", function() { return receiveBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllBoxes", function() { return receiveAllBoxes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNewBox", function() { return createNewBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateExistingBox", function() { return updateExistingBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBox", function() { return deleteBox; });
+/* harmony import */ var _util_box_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/box_api_util */ "./frontend/util/box_api_util.js");
+
+var FETCH_BOX = "FETCH_BOX";
+var FETCH_ALL_BOXES = "FETCH_ALL_BOXES";
+var DELETE_BOX = "DELETE_BOX";
+var fetchBox = function fetchBox(box) {
+  return {
+    type: FETCH_BOX,
+    box: box
+  };
+};
+var fetchAllBoxes = function fetchAllBoxes(boxes) {
+  return {
+    type: FETCH_ALL_BOXES,
+    boxes: boxes
+  };
+};
+var removeBox = function removeBox(id) {
+  return {
+    type: DELETE_BOX,
+    id: id
+  };
+};
+var receiveBox = function receiveBox(id) {
+  return function (dispatch) {
+    return Object(_util_box_api_util__WEBPACK_IMPORTED_MODULE_0__["findBox"])(id).then(function (box) {
+      return dispatch(fetchBox(box));
+    });
+  };
+};
+var receiveAllBoxes = function receiveAllBoxes() {
+  return function (dispatch) {
+    return Object(_util_box_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllBoxes"])().then(function (boxes) {
+      return dispatch(fetchAllBoxes(boxes));
+    });
+  };
+};
+var createNewBox = function createNewBox(box) {
+  return function (dispatch) {
+    return Object(_util_box_api_util__WEBPACK_IMPORTED_MODULE_0__["createBox"])(box).then(function (box) {
+      return dispatch(fetchBox(box));
+    });
+  };
+};
+var updateExistingBox = function updateExistingBox(box) {
+  return function (dispatch) {
+    return Object(_util_box_api_util__WEBPACK_IMPORTED_MODULE_0__["updateBox"])(box).then(function (box) {
+      return dispatch(fetchBox(box));
+    });
+  };
+};
+var deleteBox = function deleteBox(id) {
+  return function (dispatch) {
+    return Object(_util_box_api_util__WEBPACK_IMPORTED_MODULE_0__["destroyBox"])(id).then(function () {
+      return dispatch(removeBox(id));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -168,6 +249,87 @@ var findCurrentUser = function findCurrentUser(user) {
 var logoutCurrentUser = function logoutCurrentUser() {
   return {
     type: LOGOUT_CURRENT_USER
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/submission_actions.js":
+/*!************************************************!*\
+  !*** ./frontend/actions/submission_actions.js ***!
+  \************************************************/
+/*! exports provided: FETCH_SUBMISSION, FETCH_ALL_SUBMISSIONS, DELETE_SUBMISSION, fetchSubmission, fetchAllSubmissions, removeSubmission, receiveSub, receiveAllSubs, createSub, updateSub, deleteSub */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_SUBMISSION", function() { return FETCH_SUBMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_ALL_SUBMISSIONS", function() { return FETCH_ALL_SUBMISSIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_SUBMISSION", function() { return DELETE_SUBMISSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchSubmission", function() { return fetchSubmission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllSubmissions", function() { return fetchAllSubmissions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeSubmission", function() { return removeSubmission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSub", function() { return receiveSub; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllSubs", function() { return receiveAllSubs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSub", function() { return createSub; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSub", function() { return updateSub; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSub", function() { return deleteSub; });
+/* harmony import */ var _util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/submission_api_util */ "./frontend/util/submission_api_util.js");
+
+var FETCH_SUBMISSION = "FETCH_SUBMISSION";
+var FETCH_ALL_SUBMISSIONS = "FETCH_ALL_SUBMISSIONS";
+var DELETE_SUBMISSION = "DELETE_SUBMISSION";
+var fetchSubmission = function fetchSubmission(sub) {
+  return {
+    type: FETCH_SUBMISSION,
+    sub: sub
+  };
+};
+var fetchAllSubmissions = function fetchAllSubmissions(subs) {
+  return {
+    type: FETCH_ALL_SUBMISSIONS,
+    subs: subs
+  };
+};
+var removeSubmission = function removeSubmission(id) {
+  return {
+    type: DELETE_SUBMISSION,
+    id: id
+  };
+};
+var receiveSub = function receiveSub(id) {
+  return function (dispatch) {
+    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["findSubmission"])(id).then(function (sub) {
+      return dispatch(fetchSubmission(sub));
+    });
+  };
+};
+var receiveAllSubs = function receiveAllSubs() {
+  return function (dispatch) {
+    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllSubmissions"])().then(function (subs) {
+      return dispatch(fetchAllSubmissions(subs));
+    });
+  };
+};
+var createSub = function createSub(sub) {
+  return function (dispatch) {
+    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["createSubmission"])(sub).then(function (sub) {
+      return dispatch(fetchSubmission(sub));
+    });
+  };
+};
+var updateSub = function updateSub(sub) {
+  return function (dispatch) {
+    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["updateSubmission"])(sub).then(function (sub) {
+      return dispatch(fetchSubmission(sub));
+    });
+  };
+};
+var deleteSub = function deleteSub(id) {
+  return function (dispatch) {
+    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSubmission"])(id).then(function () {
+      return dispatch(removeSubmission(id));
+    });
   };
 };
 
@@ -686,6 +848,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/boxes_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/boxes_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_box_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/box_actions */ "./frontend/actions/box_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var boxesReducer = function boxesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_box_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_BOX"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, _defineProperty({}, action.box.id, action.box));
+
+    case _actions_box_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_ALL_BOXES"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, action.boxes);
+
+    case _actions_box_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_BOX"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
+      delete newState[action.id];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (boxesReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -697,10 +903,16 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _submissions_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./submissions_reducer */ "./frontend/reducers/submissions_reducer.js");
+/* harmony import */ var _boxes_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./boxes_reducer */ "./frontend/reducers/boxes_reducer.js");
+
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  submissions: _submissions_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  boxes: _boxes_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -828,6 +1040,50 @@ var sessionReducer = function sessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/submissions_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/submissions_reducer.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/submission_actions */ "./frontend/actions/submission_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var submissionsReducer = function submissionsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_SUBMISSION"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state, _defineProperty({}, action.sub.id, action.sub));
+
+    case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_0__["FETCH_ALL_SUBMISSIONS"]:
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, action.subs);
+
+    case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_SUBMISSION"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
+      delete newState[action.id];
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (submissionsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/users_reducer.js":
 /*!********************************************!*\
   !*** ./frontend/reducers/users_reducer.js ***!
@@ -904,6 +1160,59 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/box_api_util.js":
+/*!***************************************!*\
+  !*** ./frontend/util/box_api_util.js ***!
+  \***************************************/
+/*! exports provided: getAllBoxes, findBox, createBox, updateBox, destroyBox */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllBoxes", function() { return getAllBoxes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findBox", function() { return findBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBox", function() { return createBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateBox", function() { return updateBox; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyBox", function() { return destroyBox; });
+var getAllBoxes = function getAllBoxes() {
+  return $.ajax({
+    method: "GET",
+    url: "api/boxes"
+  });
+};
+var findBox = function findBox(id) {
+  return $.ajax({
+    method: "GET",
+    url: "api/box/".concat(id)
+  });
+};
+var createBox = function createBox(box) {
+  return $.ajax({
+    method: "PATCH",
+    url: "api/boxes",
+    data: {
+      box: box
+    }
+  });
+};
+var updateBox = function updateBox(box) {
+  return $.ajax({
+    method: "PATCH",
+    url: "api/box/".concat(box.id),
+    data: {
+      box: box
+    }
+  });
+};
+var destroyBox = function destroyBox(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "api/box/".concat(id)
+  });
+};
 
 /***/ }),
 
@@ -1003,6 +1312,59 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     method: "DELETE",
     url: "api/session"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/submission_api_util.js":
+/*!**********************************************!*\
+  !*** ./frontend/util/submission_api_util.js ***!
+  \**********************************************/
+/*! exports provided: getAllSubmissions, findSubmission, createSubmission, updateSubmission, deleteSubmission */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllSubmissions", function() { return getAllSubmissions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findSubmission", function() { return findSubmission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSubmission", function() { return createSubmission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateSubmission", function() { return updateSubmission; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSubmission", function() { return deleteSubmission; });
+var getAllSubmissions = function getAllSubmissions() {
+  return $.ajax({
+    method: "GET",
+    url: "api/submissions"
+  });
+};
+var findSubmission = function findSubmission(id) {
+  return $.ajax({
+    method: "GET",
+    url: "api/submission/".concat(id)
+  });
+};
+var createSubmission = function createSubmission(sub) {
+  return $.ajax({
+    method: "POST",
+    url: "api/submissions",
+    data: {
+      sub: sub
+    }
+  });
+};
+var updateSubmission = function updateSubmission(sub) {
+  return $.ajax({
+    method: "PATCH",
+    url: "api/submission/".concat(sub.id),
+    data: {
+      sub: sub
+    }
+  });
+};
+var deleteSubmission = function deleteSubmission(id) {
+  return $.ajax({
+    method: "DELETE",
+    url: "api/submission/".concat(id)
   });
 };
 
@@ -50607,7 +50969,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
