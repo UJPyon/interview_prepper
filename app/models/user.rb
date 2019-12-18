@@ -17,7 +17,10 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true }
   after_initialize :ensure_session_token
 
-  has_many :submitted_problems, as: :submittor
+  has_many :submissions,
+  primary_key: :id,
+  foreign_key: :submittor_id,
+  class_name: :Submission
 
   attr_reader :password
   
