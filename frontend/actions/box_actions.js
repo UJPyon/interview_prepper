@@ -8,8 +8,6 @@ import {
 
 export const FETCH_BOX = "FETCH_BOX";
 export const FETCH_ALL_BOXES = "FETCH_ALL_BOXES";
-export const CREATE_BOX = "CREATE_BOX";
-export const UPDATE_BOX = "UPDATE_BOX";
 export const DELETE_BOX = "DELETE_BOX";
 
 export const fetchBox = box => {
@@ -22,20 +20,6 @@ export const fetchAllBoxes = boxes => {
   return {
     type: FETCH_ALL_BOXES,
     boxes
-  };
-};
-
-export const newBox = box => {
-  return {
-    type: CREATE_BOX,
-    box
-  };
-};
-
-export const editBox = box => {
-  return {
-    type: UPDATE_BOX,
-    box
   };
 };
 
@@ -55,11 +39,11 @@ export const receiveAllBoxes = () => dispatch => {
 };
 
 export const createNewBox = box => dispatch => {
-  return createBox(box).then(box => dispatch(newBox(box)));
+  return createBox(box).then(box => dispatch(fetchBox(box)));
 };
 
 export const updateExistingBox = box => dispatch => {
-  return updateBox(box).then(box => dispatch(editBox(box)));
+  return updateBox(box).then(box => dispatch(fetchBox(box)));
 };
 
 export const deleteBox = id => dispatch => {

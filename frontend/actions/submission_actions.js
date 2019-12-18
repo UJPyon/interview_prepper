@@ -8,8 +8,6 @@ import {
 
 export const FETCH_SUBMISSION = "FETCH_SUBMISSION";
 export const FETCH_ALL_SUBMISSIONS = "FETCH_ALL_SUBMISSIONS";
-export const CREATE_SUBMISSION = "CREATE_SUBMISSION";
-export const UPDATE_SUBMISSION = "UPDATE_SUBMISSION";
 export const DELETE_SUBMISSION = "DELETE_SUBMISSION";
 
 export const fetchSubmission = sub => {
@@ -22,20 +20,6 @@ export const fetchAllSubmissions = subs => {
   return {
     type: FETCH_ALL_SUBMISSIONS,
     subs
-  };
-};
-
-export const newSubmission = sub => {
-  return {
-    type: CREATE_SUBMISSION,
-    sub
-  };
-};
-
-export const editSubmission = sub => {
-  return {
-    type: UPDATE_SUBMISSION,
-    sub
   };
 };
 
@@ -55,11 +39,11 @@ export const receiveAllSubs = () => dispatch => {
 };
 
 export const createSub = sub => dispatch => {
-  return createSubmission(sub).then(sub => dispatch(newSubmission(sub)));
+  return createSubmission(sub).then(sub => dispatch(fetchSubmission(sub)));
 };
 
 export const updateSub = sub => dispatch => {
-  return updateSubmission(sub).then(sub => dispatch(editSubmission(sub)));
+  return updateSubmission(sub).then(sub => dispatch(fetchSubmission(sub)));
 };
 
 export const deleteSub = id => dispatch => {
