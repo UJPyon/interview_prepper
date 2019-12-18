@@ -12,6 +12,8 @@ class Api::SubmissionsController < ApplicationController
 
   def create
     @submission = Submission.new(submission_params)
+    @submission.submittor_id = current_user.id
+    @submission.box_id = Box.first.id
     if @submission.save
       render :show
     else
@@ -25,6 +27,7 @@ class Api::SubmissionsController < ApplicationController
       render :show
     else
       render json: @submission.errors.full_messages, status: 422
+    end
   end
 
   def destroy
@@ -35,7 +38,7 @@ class Api::SubmissionsController < ApplicationController
 
   private
   def submission_params
-    params.require(:submission).permit(:title, :body, :answer)
+    params.require(:submission).permit(:title, :body, :answer, :submittor_id, :box_id)
   end
 
 end

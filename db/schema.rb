@@ -10,20 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_221439) do
+ActiveRecord::Schema.define(version: 2019_12_18_184806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "submissions", force: :cascade do |t|
-    t.string "title"
-    t.string "submittor_type"
-    t.bigint "submittor_id"
-    t.string "body"
-    t.string "answer"
+  create_table "boxes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["submittor_type", "submittor_id"], name: "index_submissions_on_submittor_type_and_submittor_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "body", null: false
+    t.string "answer", null: false
+    t.integer "submittor_id", null: false
+    t.integer "box_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
