@@ -4,7 +4,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login!(@user) 
-      render 'api/users/show'
+      render :show
     else
       errors = @user.errors.full_messages.map do |error|
         if error == "Username can't be blank"
