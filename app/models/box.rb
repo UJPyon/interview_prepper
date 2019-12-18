@@ -10,5 +10,11 @@
 #
 
 class Box < ApplicationRecord
+  validates :name, :description, presence: true
 
+  has_many :submissions,
+  primary_key: :id,
+  foreign_key: :box_id,
+  class_name: :Submission
+  
 end

@@ -14,6 +14,7 @@ class Api::SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
     @submission.submittor_id = current_user.id
     @submission.box_id = Box.first.id
+    debugger
     if @submission.save
       render :show
     else
