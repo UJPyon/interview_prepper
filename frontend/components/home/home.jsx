@@ -7,11 +7,18 @@ class Home extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchAllUsers();
+    this.props.fetchAllSubs();
+    this.props.fetchAllBoxes();
+  }
+
   handleLogout() {
     this.props.logout().then(() => this.props.history.push('/'));
   }
 
   render() {
+
     return (
       <>
         <h1>You are logged in.</h1>
