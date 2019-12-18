@@ -28,7 +28,7 @@ export const updateBox = box => {
   });
 };
 
-export const deleteBox = id => {
+export const destroyBox = id => {
   return $.ajax({
     method: "DELETE",
     url: `api/box/${id}`
