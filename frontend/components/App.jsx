@@ -11,10 +11,6 @@ const App = () => {
       <div className="main-home">
         <AuthRoute exact path='/' component={SessionFormContainer} />
         <ProtectedRoute path='/learn' component={HomeContainer} />
-        {/* <ProtectedRoute exact path='/home' component={HomeContainer} />
-        <ProtectedRoute exact path='/home/:userId' component={ProfileContainer} />
-        <ProtectedRoute exact path='/home/category/:categoryId' component={CategoryContainer} />
-        <ProtectedRoute path='/home' component={Footer} /> */}
       </div>
     </>
   );
