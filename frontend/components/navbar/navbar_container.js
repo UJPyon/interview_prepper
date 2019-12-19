@@ -2,7 +2,7 @@ import { logout } from "../../actions/session_actions";
 import { receiveAllUsers, receiveUser } from "../../actions/user_actions";
 import { receiveAllSubs, receiveSub } from "../../actions/submission_actions";
 import { receiveAllBoxes, receiveBox } from "../../actions/box_actions";
-import Home from "./home";
+import Navbar from "./navbar";
 
 const msp = state => {
   const users = state.entities.users;
@@ -27,4 +27,4 @@ const mdp = dispatch => {
   };
 };
 
-export default connect(msp, mdp)(Home);
+export default connect(msp, mdp)(Navbar);
