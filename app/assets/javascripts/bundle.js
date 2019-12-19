@@ -655,10 +655,12 @@ function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
-/* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/submission_actions */ "./frontend/actions/submission_actions.js");
-/* harmony import */ var _actions_box_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/box_actions */ "./frontend/actions/box_actions.js");
-/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar/navbar.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/submission_actions */ "./frontend/actions/submission_actions.js");
+/* harmony import */ var _actions_box_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/box_actions */ "./frontend/actions/box_actions.js");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar/navbar.jsx");
+
 
 
 
@@ -682,27 +684,27 @@ var mdp = function mdp(dispatch) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["logout"])());
     },
     fetchAllUsers: function fetchAllUsers() {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["receiveAllUsers"])());
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllUsers"])());
     },
     fetchAllSubs: function fetchAllSubs() {
-      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllSubs"])());
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_3__["receiveAllSubs"])());
     },
     fetchAllBoxes: function fetchAllBoxes() {
-      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_3__["receiveAllBoxes"])());
+      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_4__["receiveAllBoxes"])());
     },
     fetchUser: function fetchUser(id) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["receiveUser"])(id));
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["receiveUser"])(id));
     },
     fetchSub: function fetchSub(id) {
-      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_2__["receiveSub"])(id));
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_3__["receiveSub"])(id));
     },
     fetchBox: function fetchBox(id) {
-      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_3__["receiveBox"])(id));
+      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_4__["receiveBox"])(id));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (connect(msp, mdp)(_navbar__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_navbar__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 

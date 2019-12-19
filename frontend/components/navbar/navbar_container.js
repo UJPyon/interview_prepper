@@ -1,4 +1,5 @@
 import { logout } from "../../actions/session_actions";
+import { connect } from "react-redux";
 import { receiveAllUsers, receiveUser } from "../../actions/user_actions";
 import { receiveAllSubs, receiveSub } from "../../actions/submission_actions";
 import { receiveAllBoxes, receiveBox } from "../../actions/box_actions";
