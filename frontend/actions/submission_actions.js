@@ -47,5 +47,6 @@ export const updateSub = sub => dispatch => {
 };
 
 export const deleteSub = id => dispatch => {
+  debugger
   return deleteSubmission(id).then(() => dispatch(removeSubmission(id)));
 };

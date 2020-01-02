@@ -33,6 +33,7 @@ class Api::SubmissionsController < ApplicationController
   def destroy
     @submission = Submission.find(params[:id])
     @submission.destroy
+    @submissions = Submission.all
     render :index
   end
 

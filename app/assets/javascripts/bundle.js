@@ -327,6 +327,7 @@ var updateSub = function updateSub(sub) {
 };
 var deleteSub = function deleteSub(id) {
   return function (dispatch) {
+    debugger;
     return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSubmission"])(id).then(function () {
       return dispatch(removeSubmission(id));
     });
@@ -504,6 +505,7 @@ function (_React$Component) {
       var submissions;
 
       if (this.props.submissions[0] !== undefined) {
+        debugger;
         submissions = this.props.submissions.map(function (sub) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             key: sub.id,
@@ -1001,9 +1003,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1019,9 +1021,13 @@ function (_React$Component) {
   _inherits(Submission, _React$Component);
 
   function Submission(props) {
+    var _this;
+
     _classCallCheck(this, Submission);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Submission, [{
@@ -1030,6 +1036,16 @@ function (_React$Component) {
       this.props.fetchAllUsers();
       this.props.fetchAllSubs();
       this.props.fetchAllBoxes();
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.props.deleteSub(this.props.submissionId).then(function () {
+        return _this2.props.history.push('/learn');
+      });
     }
   }, {
     key: "render",
@@ -1045,7 +1061,9 @@ function (_React$Component) {
         to: "/learn"
       }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn/submission/".concat(this.props.submissionId, "/edit")
-      }, "Edit Submission"));
+      }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDelete
+      }, "Delete Submission"));
     }
   }]);
 
@@ -1189,9 +1207,8 @@ function (_React$Component) {
           return _this2.props.history.push("/learn/submission/".concat(_this2.props.submissionId));
         });
       } else if (this.props.formType === "new") {
-        this.props.createSub(sub).then(function (sub) {
-          debugger;
-          return _this2.props.history.push("/learn/submission/".concat(sub.id));
+        this.props.createSub(sub).then(function (result) {
+          return _this2.props.history.push("/learn/submission/".concat(result.sub.id));
         });
       }
     }
@@ -1687,9 +1704,11 @@ var submissionsReducer = function submissionsReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/submission_actions */ "./frontend/actions/submission_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1699,23 +1718,29 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var newState;
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["FIND_CURRENT_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, state, {
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, state, {
         username: action.user.username
       });
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["FETCH_USER"]:
-      return Object(lodash__WEBPACK_IMPORTED_MODULE_2__["merge"])({}, state, {
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, state, {
         user: action.user
       });
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["FETCH_ALL_USERS"]:
       return action.users;
+
+    case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_2__["DELETE_SUBMISSION"]:
+      newState = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, state);
+      delete newState.users[action.userId].submissionIds[action.id];
+      return newState;
 
     default:
       return state;

@@ -5,12 +5,18 @@ import NavbarContainer from "../navbar/navbar_container";
 class Submission extends React.Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchAllUsers();
     this.props.fetchAllSubs();
     this.props.fetchAllBoxes();
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteSub(this.props.submissionId).then(() => this.props.history.push('/learn'));
   }
 
   render() {
@@ -26,6 +32,7 @@ class Submission extends React.Component {
         <h2>{title}</h2>
         <p>{body}</p>
         <Link to={`/learn/submission/${this.props.submissionId}/edit`}>Edit Submission</Link>
+        <button onClick={this.handleDelete}>Delete Submission</button>
       </>
     );
   }

@@ -4,7 +4,7 @@ import { merge } from "lodash";
 const submissionsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState;
-
+  
   switch (action.type) {
     case FETCH_SUBMISSION:
       return merge({}, state, { [action.sub.id]: action.sub });

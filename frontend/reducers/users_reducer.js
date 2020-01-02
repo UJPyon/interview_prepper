@@ -1,9 +1,11 @@
 import { RECEIVE_CURRENT_USER, FIND_CURRENT_USER } from "../actions/session_actions";
 import { FETCH_USER, FETCH_ALL_USERS } from "../actions/user_actions";
+import { DELETE_SUBMISSION } from "../actions/submission_actions";
 import { merge } from "lodash";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
+  let newState;
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
@@ -14,6 +16,10 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, { user: action.user });
     case FETCH_ALL_USERS:
       return action.users;
+    case DELETE_SUBMISSION:
+      newState = merge({}, state);
+      delete newState.users[action.userId].submissionIds[action.id];
+      return newState;
     default: 
       return state;
   }

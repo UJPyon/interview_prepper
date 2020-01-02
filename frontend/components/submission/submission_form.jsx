@@ -28,10 +28,7 @@ class SubmissionForm extends React.Component {
     if (this.props.formType === "edit") {
       this.props.updateSub(sub).then(() => this.props.history.push(`/learn/submission/${this.props.submissionId}`));
     } else if (this.props.formType === "new") {
-      this.props.createSub(sub).then((sub) => {
-        debugger
-        return this.props.history.push(`/learn/submission/${sub.id}`);
-      });
+      this.props.createSub(sub).then((result) => this.props.history.push(`/learn/submission/${result.sub.id}`));
     }
   }
 
