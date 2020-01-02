@@ -7,11 +7,13 @@ import {
 import { receiveAllBoxes } from "../../actions/box_actions";
 import { connect } from "react-redux";
 
-import SubmissionForm from "./submission";
+import SubmissionForm from "./submission_form";
 
 const msp = (state) => {
+  const submission = {};
   return {
     errors: state.errors.session,
+    submission,
     formType: "new",
   };
 };

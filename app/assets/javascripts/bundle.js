@@ -432,11 +432,11 @@ var App = function App() {
     component: _submission_submission_form_new_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
-    path: "/learn/:submissionId",
+    path: "/learn/submission/:submissionId",
     component: _submission_submission_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
-    path: "/learn/:submissionId/edit",
+    path: "/learn/submission/:submissionId/edit",
     component: _submission_submission_form_edit_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   })));
 };
@@ -507,7 +507,7 @@ function (_React$Component) {
         submissions = this.props.submissions.map(function (sub) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             key: sub.id,
-            to: "/learn/".concat(sub.id)
+            to: "/learn/submission/".concat(sub.id)
           }, sub.title);
         });
       }
@@ -1044,7 +1044,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn"
       }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/learn/".concat(this.props.submissionId, "/edit")
+        to: "/learn/submission/".concat(this.props.submissionId, "/edit")
       }, "Edit Submission"));
     }
   }]);
@@ -1186,11 +1186,12 @@ function (_React$Component) {
 
       if (this.props.formType === "edit") {
         this.props.updateSub(sub).then(function () {
-          return _this2.props.history.push("/learn/".concat(_this2.props.submissionId));
+          return _this2.props.history.push("/learn/submission/".concat(_this2.props.submissionId));
         });
       } else if (this.props.formType === "new") {
         this.props.createSub(sub).then(function (sub) {
-          return _this2.props.history.push("/learn/".concat(sub.id));
+          debugger;
+          return _this2.props.history.push("/learn/submission/".concat(sub.id));
         });
       }
     }
@@ -1206,9 +1207,19 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/learn/".concat(this.props.submissionId)
-      }, "Back to Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      var returnLink;
+
+      if (this.props.formType === "edit") {
+        returnLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/learn/".concat(this.props.submissionId)
+        }, "Back to Submission");
+      } else if (this.props.formType === "new") {
+        returnLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: '/learn'
+        }, "Back to Index Page");
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, returnLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "title"
@@ -1324,7 +1335,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/submission_actions */ "./frontend/actions/submission_actions.js");
 /* harmony import */ var _actions_box_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/box_actions */ "./frontend/actions/box_actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _submission__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./submission */ "./frontend/components/submission/submission.jsx");
+/* harmony import */ var _submission_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./submission_form */ "./frontend/components/submission/submission_form.jsx");
 
 
 
@@ -1332,8 +1343,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state) {
+  var submission = {};
   return {
     errors: state.errors.session,
+    submission: submission,
     formType: "new"
   };
 };
@@ -1358,7 +1371,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(_submission__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(_submission_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 

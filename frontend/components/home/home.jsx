@@ -18,7 +18,7 @@ class Home extends React.Component {
     if (this.props.submissions[0] !== undefined) {
       submissions = this.props.submissions.map(sub => {
         return (
-          <Link key={sub.id} to={`/learn/${sub.id}`}>{sub.title}</Link>
+          <Link key={sub.id} to={`/learn/submission/${sub.id}`}>{sub.title}</Link>
         );
       });
     }

@@ -26,9 +26,12 @@ class SubmissionForm extends React.Component {
     e.preventDefault();
     const sub = Object.assign({}, this.state);
     if (this.props.formType === "edit") {
-      this.props.updateSub(sub).then(() => this.props.history.push(`/learn/${this.props.submissionId}`));
+      this.props.updateSub(sub).then(() => this.props.history.push(`/learn/submission/${this.props.submissionId}`));
     } else if (this.props.formType === "new") {
-      this.props.createSub(sub).then((sub) => this.props.history.push(`/learn/${sub.id}`));
+      this.props.createSub(sub).then((sub) => {
+        debugger
+        return this.props.history.push(`/learn/submission/${sub.id}`);
+      });
     }
   }
 
@@ -39,10 +42,16 @@ class SubmissionForm extends React.Component {
   }
 
   render() {
+    let returnLink;
+    if (this.props.formType === "edit") {
+      returnLink = <Link to={`/learn/${this.props.submissionId}`}>Back to Submission</Link>;
+    } else if (this.props.formType === "new") {
+      returnLink = <Link to={'/learn'}>Back to Index Page</Link>;
+    }
 
     return (
       <>
-        <Link to={`/learn/${this.props.submissionId}`}>Back to Submission</Link>
+        {returnLink}
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title</label>
           <input 
