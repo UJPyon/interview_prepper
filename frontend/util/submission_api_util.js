@@ -12,26 +12,26 @@ export const findSubmission = id => {
   });
 };
 
-export const createSubmission = sub => {
+export const createSubmission = submission => {
   return $.ajax({
     method: "POST",
     url: "api/submissions",
-    data: { sub },
+    data: { submission },
   });
 };
 
-export const updateSubmission = sub => {
+export const updateSubmission = submission => {
   debugger
   return $.ajax({
     method: "PATCH",
-    url: `api/submission/${sub.id}`,
-    data: { sub },
+    url: `api/submissions/${submission.id}`,
+    data: { submission },
   });
 };
 
 export const deleteSubmission = id => {
   return $.ajax({
     method: "DELETE",
-    url: `api/submission/${id}`,
+    url: `api/submissions/${id}`,
   });
 };

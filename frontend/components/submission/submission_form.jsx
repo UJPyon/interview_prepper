@@ -10,7 +10,8 @@ class Submission extends React.Component {
       title: this.props.submission.title,
       body: this.props.submission.body,
       answer: this.props.submission.answer,
-      boxId: this.props.boxId,
+      box_id: this.props.boxId,
+      submittor_id: this.props.currentUserId,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);

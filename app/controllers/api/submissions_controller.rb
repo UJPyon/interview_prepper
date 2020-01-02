@@ -23,6 +23,7 @@ class Api::SubmissionsController < ApplicationController
 
   def update
     @submission = Submission.find(params[:id])
+    debugger
     if @submission.update(submission_params)
       render :show
     else
@@ -38,6 +39,7 @@ class Api::SubmissionsController < ApplicationController
 
   private
   def submission_params
+    debugger
     params.require(:submission).permit(:title, :body, :answer, :submittor_id, :box_id)
   end
 

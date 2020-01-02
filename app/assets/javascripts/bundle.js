@@ -1157,7 +1157,8 @@ function (_React$Component) {
       title: _this.props.submission.title,
       body: _this.props.submission.body,
       answer: _this.props.submission.answer,
-      boxId: _this.props.boxId
+      box_id: _this.props.boxId,
+      submittor_id: _this.props.currentUserId
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
@@ -1255,15 +1256,22 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state, ownProps) {
   var submissionId = ownProps.match.params.submissionId;
-  var submission = state.entities.submissions[submissionId];
-  var boxId = submission.boxId;
-  var box = state.entities.boxes[boxId];
+  var submission = state.entities.submissions[submissionId] || {};
+  var boxId, box;
+
+  if (submission) {
+    boxId = submission.boxId;
+    box = state.entities.boxes[boxId];
+  }
+
+  var currentUserId = state.session.id;
   return {
     errors: state.errors.session,
     submissionId: submissionId,
     submission: submission,
     boxId: boxId,
-    box: box
+    box: box,
+    currentUserId: currentUserId
   };
 };
 
@@ -1851,29 +1859,29 @@ var findSubmission = function findSubmission(id) {
     url: "api/submissions/".concat(id)
   });
 };
-var createSubmission = function createSubmission(sub) {
+var createSubmission = function createSubmission(submission) {
   return $.ajax({
     method: "POST",
     url: "api/submissions",
     data: {
-      sub: sub
+      submission: submission
     }
   });
 };
-var updateSubmission = function updateSubmission(sub) {
+var updateSubmission = function updateSubmission(submission) {
   debugger;
   return $.ajax({
     method: "PATCH",
-    url: "api/submission/".concat(sub.id),
+    url: "api/submissions/".concat(submission.id),
     data: {
-      sub: sub
+      submission: submission
     }
   });
 };
 var deleteSubmission = function deleteSubmission(id) {
   return $.ajax({
     method: "DELETE",
-    url: "api/submission/".concat(id)
+    url: "api/submissions/".concat(id)
   });
 };
 
