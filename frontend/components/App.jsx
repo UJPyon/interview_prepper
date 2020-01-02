@@ -5,6 +5,7 @@ import SessionFormContainer from './session/session_form_container';
 import HomeContainer from './home/home_container';
 import NavbarContainer from './navbar/navbar_container';
 import SubmissionContainer from './submission/submission_container';
+import SubmissionFormContainer from './submission/submission_form_container';
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
         <ProtectedRoute path='/learn' component={NavbarContainer} />
         <ProtectedRoute exact path='/learn' component={HomeContainer} />
         <ProtectedRoute exact path='/learn/:submissionId' component={SubmissionContainer} />
+        <ProtectedRoute exact path='/learn/:submissionId/edit' component={SubmissionFormContainer} />
       </div>
     </>
   );

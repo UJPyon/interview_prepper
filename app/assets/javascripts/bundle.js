@@ -400,6 +400,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/home_container */ "./frontend/components/home/home_container.js");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
 /* harmony import */ var _submission_submission_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./submission/submission_container */ "./frontend/components/submission/submission_container.js");
+/* harmony import */ var _submission_submission_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./submission/submission_form_container */ "./frontend/components/submission/submission_form_container.js");
+
 
 
 
@@ -426,6 +428,10 @@ var App = function App() {
     exact: true,
     path: "/learn/:submissionId",
     component: _submission_submission_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    exact: true,
+    path: "/learn/:submissionId/edit",
+    component: _submission_submission_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   })));
 };
 
@@ -1007,13 +1013,9 @@ function (_React$Component) {
   _inherits(Submission, _React$Component);
 
   function Submission(props) {
-    var _this;
-
     _classCallCheck(this, Submission);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
-    _this.state = _this.props.submission;
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
   }
 
   _createClass(Submission, [{
@@ -1026,12 +1028,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var title, body;
 
-      if (this.state !== null) {
-        title = this.state.title;
-        body = this.state.body;
+      if (this.props.submission) {
+        title = this.props.submission.title;
+        body = this.props.submission.body;
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1068,7 +1069,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  var submissionId = ownProps.submissionId;
+  var submissionId = ownProps.match.params.submissionId;
   var submission = state.entities.submissions[submissionId];
   return {
     errors: state.errors.session,
@@ -1091,9 +1092,6 @@ var mdp = function mdp(dispatch) {
     receiveSub: function receiveSub(id) {
       return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSub"])(id));
     },
-    updateSub: function updateSub(sub) {
-      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["updateSub"])(sub));
-    },
     deleteSub: function deleteSub(id) {
       return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["deleteSub"])(id));
     }
@@ -1101,6 +1099,189 @@ var mdp = function mdp(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(_submission__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/submission/submission_form.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/submission/submission_form.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Submission =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Submission, _React$Component);
+
+  function Submission(props) {
+    var _this;
+
+    _classCallCheck(this, Submission);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
+    _this.state = {
+      title: _this.props.submission.title,
+      body: _this.props.submission.body,
+      answer: _this.props.submission.answer,
+      boxId: _this.props.boxId
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Submission, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchAllUsers();
+      this.props.fetchAllSubs();
+      this.props.fetchAllBoxes();
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var sub = Object.assign({}, this.state);
+      this.props.updateSub(sub).then(function () {
+        return _this2.props.history.push("/learn/".concat(_this2.props.submissionId));
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, field, e.target.value));
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/learn/".concat(this.props.submissionId)
+      }, "Back to Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "title",
+        type: "text",
+        onChange: this.update("title"),
+        value: this.state.title
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "body"
+      }, "Problem"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "body",
+        type: "textarea",
+        onChange: this.update("body"),
+        value: this.state.body
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "answer"
+      }, "Solution"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "answer",
+        type: "textarea",
+        onChange: this.update("answer"),
+        value: this.state.answer
+      })));
+    }
+  }]);
+
+  return Submission;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Submission));
+
+/***/ }),
+
+/***/ "./frontend/components/submission/submission_form_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/submission/submission_form_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/submission_actions */ "./frontend/actions/submission_actions.js");
+/* harmony import */ var _actions_box_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/box_actions */ "./frontend/actions/box_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _submission_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./submission_form */ "./frontend/components/submission/submission_form.jsx");
+
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  var submissionId = ownProps.match.params.submissionId;
+  var submission = state.entities.submissions[submissionId];
+  var boxId = submission.boxId;
+  var box = state.entities.boxes[boxId];
+  return {
+    errors: state.errors.session,
+    submissionId: submissionId,
+    submission: submission,
+    boxId: boxId,
+    box: box
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["receiveAllUsers"])());
+    },
+    fetchAllSubs: function fetchAllSubs() {
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["receiveAllSubs"])());
+    },
+    fetchAllBoxes: function fetchAllBoxes() {
+      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllBoxes"])());
+    },
+    receiveSub: function receiveSub(id) {
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSub"])(id));
+    },
+    updateSub: function updateSub(sub) {
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["updateSub"])(sub));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(_submission_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 

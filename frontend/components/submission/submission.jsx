@@ -5,7 +5,6 @@ import NavbarContainer from "../navbar/navbar_container";
 class Submission extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.submission;
   }
 
   componentDidMount() {
@@ -15,11 +14,10 @@ class Submission extends React.Component {
   }
 
   render() {
-    debugger
     let title, body;
-    if (this.state !== null) {
-      title = this.state.title;
-      body = this.state.body;
+    if (this.props.submission) {
+      title = this.props.submission.title;
+      body = this.props.submission.body;
     }
 
     return (
