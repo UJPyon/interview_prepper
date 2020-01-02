@@ -4,6 +4,7 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import SessionFormContainer from './session/session_form_container';
 import HomeContainer from './home/home_container';
 import NavbarContainer from './navbar/navbar_container';
+import SubmissionContainer from './submission/submission_container';
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
         <AuthRoute exact path='/' component={SessionFormContainer} />
         <ProtectedRoute path='/learn' component={NavbarContainer} />
         <ProtectedRoute exact path='/learn' component={HomeContainer} />
+        <ProtectedRoute exact path='/learn/:submissionId' component={SubmissionContainer} />
       </div>
     </>
   );

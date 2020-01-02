@@ -5,7 +5,6 @@ import NavbarContainer from "../navbar/navbar_container";
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -14,16 +13,23 @@ class Home extends React.Component {
     this.props.fetchAllBoxes();
   }
 
-  handleLogout() {
-    this.props.logout().then(() => this.props.history.push('/'));
-  }
-
   render() {
+    let submissions;
+    if (this.props.submissions[0] !== undefined) {
+      submissions = this.props.submissions.map(sub => {
+        return (
+          <Link key={sub.id} to={`/learn/${sub.id}`}>{sub.title}</Link>
+        );
+      });
+    }
 
     return (
       <>
-        <h1>You are logged in.</h1>
-        <button onClick={this.handleLogout}>Log Out</button>
+        <Link to={'/learn'}>Return to Home</Link>
+        <h2>Your Submitted Problems</h2>
+        <ul>
+          {submissions}
+        </ul>
       </>
     );
   }

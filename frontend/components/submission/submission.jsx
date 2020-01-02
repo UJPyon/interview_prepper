@@ -5,7 +5,7 @@ import NavbarContainer from "../navbar/navbar_container";
 class Submission extends React.Component {
   constructor(props) {
     super(props);
-    
+    this.state = this.props.submission;
   }
 
   componentDidMount() {
@@ -15,19 +15,18 @@ class Submission extends React.Component {
   }
 
   render() {
-
-    const submissions = this.props.submissions.map(sub => {
-      return (
-        <Link to={`/learn/${sub.id}`}>{sub.title}</Link>
-      );
-    });
+    debugger
+    let title, body;
+    if (this.state !== null) {
+      title = this.state.title;
+      body = this.state.body;
+    }
 
     return (
       <>
-        <h1></h1>
-        <ul>
-          {submissions}
-        </ul>
+      <Link to='/learn'>Back to Index Page</Link>
+        <h2>{title}</h2>
+        <p>{body}</p>
       </>
     );
   }

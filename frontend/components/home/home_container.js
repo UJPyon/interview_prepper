@@ -7,10 +7,15 @@ import Home from "./home";
 
 const msp = state => {
   const users = state.entities.users;
-  const submissions = state.entities.submissions;
+  const currentUserId = state.session.id;
+  const currentUserSubIds = state.entities.users[currentUserId].submissionIds;
+  const submissions = currentUserSubIds.map(id => {
+    return state.entities.submissions[id];
+  });
   const boxes = state.entities.boxes;
   return {
     users,
+    currentUserSubIds,
     submissions,
     boxes,
   };
@@ -18,7 +23,6 @@ const msp = state => {
 
 const mdp = dispatch => {
   return {
-    logout: () => dispatch(logout()),
     fetchAllUsers: () => dispatch(receiveAllUsers()),
     fetchAllSubs: () => dispatch(receiveAllSubs()),
     fetchAllBoxes: () => dispatch(receiveAllBoxes()),
