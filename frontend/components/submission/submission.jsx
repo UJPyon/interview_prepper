@@ -14,18 +14,20 @@ class Submission extends React.Component {
     this.props.fetchAllBoxes();
   }
 
-  handleLogout() {
-    this.props.logout().then(() => this.props.history.push('/'));
-  }
-
   render() {
 
-    this.props.submissions;
+    const submissions = this.props.submissions.map(sub => {
+      return (
+        <Link to={`/learn/${sub.id}`}>{sub.title}</Link>
+      );
+    });
 
     return (
       <>
         <h1></h1>
-        <button onClick={this.handleLogout}>Log Out</button>
+        <ul>
+          {submissions}
+        </ul>
       </>
     );
   }
