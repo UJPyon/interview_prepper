@@ -8,7 +8,7 @@ export const getAllSubmissions = () => {
 export const findSubmission = id => {
   return $.ajax({
     method: "GET",
-    url: `api/submission/${id}`,
+    url: `api/submissions/${id}`,
   });
 };
 
@@ -21,6 +21,7 @@ export const createSubmission = sub => {
 };
 
 export const updateSubmission = sub => {
+  debugger
   return $.ajax({
     method: "PATCH",
     url: `api/submission/${sub.id}`,

@@ -6,6 +6,7 @@ class Submission extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.submissionId,
       title: this.props.submission.title,
       body: this.props.submission.body,
       answer: this.props.submission.answer,
@@ -60,6 +61,7 @@ class Submission extends React.Component {
             onChange={this.update("answer")}
             value={this.state.answer}
           />
+          <input type="submit" value="Submit Changes"/>
         </form>
       </>
     );

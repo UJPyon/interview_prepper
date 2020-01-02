@@ -1037,7 +1037,9 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn"
-      }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body));
+      }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/learn/".concat(this.props.submissionId, "/edit")
+      }, "Edit Submission"));
     }
   }]);
 
@@ -1151,6 +1153,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
     _this.state = {
+      id: _this.props.submissionId,
       title: _this.props.submission.title,
       body: _this.props.submission.body,
       answer: _this.props.submission.answer,
@@ -1216,6 +1219,9 @@ function (_React$Component) {
         type: "textarea",
         onChange: this.update("answer"),
         value: this.state.answer
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Submit Changes"
       })));
     }
   }]);
@@ -1842,7 +1848,7 @@ var getAllSubmissions = function getAllSubmissions() {
 var findSubmission = function findSubmission(id) {
   return $.ajax({
     method: "GET",
-    url: "api/submission/".concat(id)
+    url: "api/submissions/".concat(id)
   });
 };
 var createSubmission = function createSubmission(sub) {
@@ -1855,6 +1861,7 @@ var createSubmission = function createSubmission(sub) {
   });
 };
 var updateSubmission = function updateSubmission(sub) {
+  debugger;
   return $.ajax({
     method: "PATCH",
     url: "api/submission/".concat(sub.id),
