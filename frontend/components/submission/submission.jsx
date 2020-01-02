@@ -22,7 +22,7 @@ class Submission extends React.Component {
 
     return (
       <>
-      <Link to='/learn'>Back to Index Page</Link>
+        <Link to='/learn'>Back to Index Page</Link>
         <h2>{title}</h2>
         <p>{body}</p>
         <Link to={`/learn/${this.props.submissionId}/edit`}>Edit Submission</Link>

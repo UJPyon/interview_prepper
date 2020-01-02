@@ -25,11 +25,11 @@ class Home extends React.Component {
 
     return (
       <>
-        <Link to={'/learn'}>Return to Home</Link>
         <h2>Your Submitted Problems</h2>
         <ul>
           {submissions}
         </ul>
+        <Link to={'/learn/new'}>Create new Submission</Link>
       </>
     );
   }

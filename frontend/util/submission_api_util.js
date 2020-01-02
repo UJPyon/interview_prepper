@@ -21,7 +21,6 @@ export const createSubmission = submission => {
 };
 
 export const updateSubmission = submission => {
-  debugger
   return $.ajax({
     method: "PATCH",
     url: `api/submissions/${submission.id}`,

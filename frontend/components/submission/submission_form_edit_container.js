@@ -25,6 +25,7 @@ const msp = (state, ownProps) => {
     boxId,
     box,
     currentUserId,
+    formType: "edit",
   };
 };
 

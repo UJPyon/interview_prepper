@@ -1,17 +1,16 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import NavbarContainer from "../navbar/navbar_container";
 
-class Submission extends React.Component {
+class SubmissionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.submissionId,
-      title: this.props.submission.title,
-      body: this.props.submission.body,
-      answer: this.props.submission.answer,
-      box_id: this.props.boxId,
-      submittor_id: this.props.currentUserId,
+      id: this.props.submissionId || "",
+      title: this.props.submission.title || "",
+      body: this.props.submission.body || "",
+      answer: this.props.submission.answer || "",
+      box_id: this.props.boxId || 1,
+      submittor_id: this.props.currentUserId || "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
@@ -26,7 +25,11 @@ class Submission extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const sub = Object.assign({}, this.state);
-    this.props.updateSub(sub).then(() => this.props.history.push(`/learn/${this.props.submissionId}`));
+    if (this.props.formType === "edit") {
+      this.props.updateSub(sub).then(() => this.props.history.push(`/learn/${this.props.submissionId}`));
+    } else if (this.props.formType === "new") {
+      this.props.createSub(sub).then((sub) => this.props.history.push(`/learn/${sub.id}`));
+    }
   }
 
   update(field) {
@@ -62,11 +65,11 @@ class Submission extends React.Component {
             onChange={this.update("answer")}
             value={this.state.answer}
           />
-          <input type="submit" value="Submit Changes"/>
+          <input type="submit" value="Submit"/>
         </form>
       </>
     );
   }
 }
 
-export default withRouter(Submission);
+export default withRouter(SubmissionForm);
