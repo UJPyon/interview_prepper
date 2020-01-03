@@ -5,7 +5,7 @@ import { merge } from "lodash";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
-  let newState;
+  let newState, arr, idx;
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
@@ -18,7 +18,10 @@ const usersReducer = (state = {}, action) => {
       return action.users;
     case DELETE_SUBMISSION:
       newState = merge({}, state);
-      delete newState.users[action.userId].submissionIds[action.id];
+      arr = newState[action.currentUserId].submissionIds;
+      idx = arr.indexOf(parseInt(action.submissionId));
+      debugger
+      delete arr[idx];
       return newState;
     default: 
       return state;

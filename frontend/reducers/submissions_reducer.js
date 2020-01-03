@@ -12,7 +12,8 @@ const submissionsReducer = (state = {}, action) => {
       return merge({}, action.subs);
     case DELETE_SUBMISSION:
       newState = merge({}, state);
-      delete newState[action.id];
+      debugger
+      delete newState[action.curentUserId];
       return newState;
     default:
       return state;

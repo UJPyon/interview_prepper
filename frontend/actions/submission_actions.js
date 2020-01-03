@@ -23,10 +23,12 @@ export const fetchAllSubmissions = subs => {
   };
 };
 
-export const removeSubmission = id => {
+export const removeSubmission = ({ submissionId, currentUserId }) => {
+  debugger
   return {
     type: DELETE_SUBMISSION,
-    id
+    submissionId,
+    currentUserId,
   };
 };
 
@@ -46,7 +48,7 @@ export const updateSub = sub => dispatch => {
   return updateSubmission(sub).then(sub => dispatch(fetchSubmission(sub)));
 };
 
-export const deleteSub = id => dispatch => {
+export const deleteSub = ({ submissionId, currentUserId }) => dispatch => {
   debugger
-  return deleteSubmission(id).then(() => dispatch(removeSubmission(id)));
+  return deleteSubmission(submissionId).then(() => dispatch(removeSubmission({ submissionId, currentUserId })));
 };

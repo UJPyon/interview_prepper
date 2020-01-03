@@ -291,10 +291,14 @@ var fetchAllSubmissions = function fetchAllSubmissions(subs) {
     subs: subs
   };
 };
-var removeSubmission = function removeSubmission(id) {
+var removeSubmission = function removeSubmission(_ref) {
+  var submissionId = _ref.submissionId,
+      currentUserId = _ref.currentUserId;
+  debugger;
   return {
     type: DELETE_SUBMISSION,
-    id: id
+    submissionId: submissionId,
+    currentUserId: currentUserId
   };
 };
 var receiveSub = function receiveSub(id) {
@@ -325,11 +329,16 @@ var updateSub = function updateSub(sub) {
     });
   };
 };
-var deleteSub = function deleteSub(id) {
+var deleteSub = function deleteSub(_ref2) {
+  var submissionId = _ref2.submissionId,
+      currentUserId = _ref2.currentUserId;
   return function (dispatch) {
     debugger;
-    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSubmission"])(id).then(function () {
-      return dispatch(removeSubmission(id));
+    return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSubmission"])(submissionId).then(function () {
+      return dispatch(removeSubmission({
+        submissionId: submissionId,
+        currentUserId: currentUserId
+      }));
     });
   };
 };
@@ -1043,7 +1052,13 @@ function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
-      this.props.deleteSub(this.props.submissionId).then(function () {
+      var submissionId = this.props.submissionId;
+      var currentUserId = this.props.currentUserId;
+      debugger;
+      this.props.deleteSub({
+        submissionId: submissionId,
+        currentUserId: currentUserId
+      }).then(function () {
         return _this2.props.history.push('/learn');
       });
     }
@@ -1097,10 +1112,13 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   var submissionId = ownProps.match.params.submissionId;
   var submission = state.entities.submissions[submissionId];
+  var currentUserId = state.session.id;
+  debugger;
   return {
     errors: state.errors.session,
     submissionId: submissionId,
-    submission: submission
+    submission: submission,
+    currentUserId: currentUserId
   };
 };
 
@@ -1118,8 +1136,13 @@ var mdp = function mdp(dispatch) {
     receiveSub: function receiveSub(id) {
       return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSub"])(id));
     },
-    deleteSub: function deleteSub(id) {
-      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["deleteSub"])(id));
+    deleteSub: function deleteSub(_ref) {
+      var submissionId = _ref.submissionId,
+          currentUserId = _ref.currentUserId;
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["deleteSub"])({
+        submissionId: submissionId,
+        currentUserId: currentUserId
+      }));
     }
   };
 };
@@ -1681,7 +1704,8 @@ var submissionsReducer = function submissionsReducer() {
 
     case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_SUBMISSION"]:
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
-      delete newState[action.id];
+      debugger;
+      delete newState[action.curentUserId];
       return newState;
 
     default:
@@ -1718,7 +1742,7 @@ var usersReducer = function usersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var newState;
+  var newState, arr, idx;
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
@@ -1739,7 +1763,10 @@ var usersReducer = function usersReducer() {
 
     case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_2__["DELETE_SUBMISSION"]:
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, state);
-      delete newState.users[action.userId].submissionIds[action.id];
+      arr = newState[action.currentUserId].submissionIds;
+      idx = arr.indexOf(parseInt(action.submissionId));
+      debugger;
+      delete arr[idx];
       return newState;
 
     default:
@@ -1978,10 +2005,11 @@ var updateSubmission = function updateSubmission(submission) {
     }
   });
 };
-var deleteSubmission = function deleteSubmission(id) {
+var deleteSubmission = function deleteSubmission(submissionId) {
+  debugger;
   return $.ajax({
     method: "DELETE",
-    url: "api/submissions/".concat(id)
+    url: "api/submissions/".concat(submissionId)
   });
 };
 

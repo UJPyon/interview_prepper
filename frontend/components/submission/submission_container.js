@@ -12,10 +12,13 @@ import Submission from "./submission";
 const msp = (state, ownProps) => {
   const submissionId = ownProps.match.params.submissionId;
   const submission = state.entities.submissions[submissionId];
+  const currentUserId = state.session.id;
+  debugger
   return {
     errors: state.errors.session,
     submissionId,
     submission,
+    currentUserId,
   };
 };
 
@@ -25,7 +28,7 @@ const mdp = dispatch => {
     fetchAllSubs: () => dispatch(receiveAllSubs()),
     fetchAllBoxes: () => dispatch(receiveAllBoxes()),
     receiveSub: id => dispatch(receiveSub(id)),
-    deleteSub: id => dispatch(deleteSub(id))
+    deleteSub: ({ submissionId, currentUserId }) => dispatch(deleteSub({ submissionId, currentUserId })),
   };
 };
 

@@ -28,9 +28,10 @@ export const updateSubmission = submission => {
   });
 };
 
-export const deleteSubmission = id => {
+export const deleteSubmission = (submissionId) => {
+  debugger
   return $.ajax({
     method: "DELETE",
-    url: `api/submissions/${id}`,
+    url: `api/submissions/${submissionId}`,
   });
 };
