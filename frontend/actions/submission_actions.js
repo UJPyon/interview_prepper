@@ -24,7 +24,6 @@ export const fetchAllSubmissions = subs => {
 };
 
 export const removeSubmission = ({ submissionId, currentUserId }) => {
-  debugger
   return {
     type: DELETE_SUBMISSION,
     submissionId,
@@ -49,6 +48,5 @@ export const updateSub = sub => dispatch => {
 };
 
 export const deleteSub = ({ submissionId, currentUserId }) => dispatch => {
-  debugger
   return deleteSubmission(submissionId).then(() => dispatch(removeSubmission({ submissionId, currentUserId })));
 };

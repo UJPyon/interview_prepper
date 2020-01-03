@@ -13,7 +13,6 @@ const msp = (state, ownProps) => {
   const submissionId = ownProps.match.params.submissionId;
   const submission = state.entities.submissions[submissionId];
   const currentUserId = state.session.id;
-  debugger
   return {
     errors: state.errors.session,
     submissionId,

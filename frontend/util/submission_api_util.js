@@ -29,7 +29,6 @@ export const updateSubmission = submission => {
 };
 
 export const deleteSubmission = (submissionId) => {
-  debugger
   return $.ajax({
     method: "DELETE",
     url: `api/submissions/${submissionId}`,

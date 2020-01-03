@@ -18,7 +18,6 @@ class Submission extends React.Component {
     e.preventDefault();
     const submissionId = this.props.submissionId;
     const currentUserId = this.props.currentUserId;
-    debugger
     this.props.deleteSub({ submissionId, currentUserId }).then(() => this.props.history.push('/learn'));
   }
 

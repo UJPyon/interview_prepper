@@ -294,7 +294,6 @@ var fetchAllSubmissions = function fetchAllSubmissions(subs) {
 var removeSubmission = function removeSubmission(_ref) {
   var submissionId = _ref.submissionId,
       currentUserId = _ref.currentUserId;
-  debugger;
   return {
     type: DELETE_SUBMISSION,
     submissionId: submissionId,
@@ -333,7 +332,6 @@ var deleteSub = function deleteSub(_ref2) {
   var submissionId = _ref2.submissionId,
       currentUserId = _ref2.currentUserId;
   return function (dispatch) {
-    debugger;
     return Object(_util_submission_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSubmission"])(submissionId).then(function () {
       return dispatch(removeSubmission({
         submissionId: submissionId,
@@ -514,7 +512,6 @@ function (_React$Component) {
       var submissions;
 
       if (this.props.submissions[0] !== undefined) {
-        debugger;
         submissions = this.props.submissions.map(function (sub) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
             key: sub.id,
@@ -1054,7 +1051,6 @@ function (_React$Component) {
       e.preventDefault();
       var submissionId = this.props.submissionId;
       var currentUserId = this.props.currentUserId;
-      debugger;
       this.props.deleteSub({
         submissionId: submissionId,
         currentUserId: currentUserId
@@ -1113,7 +1109,6 @@ var msp = function msp(state, ownProps) {
   var submissionId = ownProps.match.params.submissionId;
   var submission = state.entities.submissions[submissionId];
   var currentUserId = state.session.id;
-  debugger;
   return {
     errors: state.errors.session,
     submissionId: submissionId,
@@ -1704,7 +1699,6 @@ var submissionsReducer = function submissionsReducer() {
 
     case _actions_submission_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_SUBMISSION"]:
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, state);
-      debugger;
       delete newState[action.curentUserId];
       return newState;
 
@@ -1765,7 +1759,6 @@ var usersReducer = function usersReducer() {
       newState = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])({}, state);
       arr = newState[action.currentUserId].submissionIds;
       idx = arr.indexOf(parseInt(action.submissionId));
-      debugger;
       delete arr[idx];
       return newState;
 
@@ -2006,7 +1999,6 @@ var updateSubmission = function updateSubmission(submission) {
   });
 };
 var deleteSubmission = function deleteSubmission(submissionId) {
-  debugger;
   return $.ajax({
     method: "DELETE",
     url: "api/submissions/".concat(submissionId)

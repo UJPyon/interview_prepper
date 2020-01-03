@@ -20,7 +20,6 @@ const usersReducer = (state = {}, action) => {
       newState = merge({}, state);
       arr = newState[action.currentUserId].submissionIds;
       idx = arr.indexOf(parseInt(action.submissionId));
-      debugger
       delete arr[idx];
       return newState;
     default: 
