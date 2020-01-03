@@ -1032,7 +1032,11 @@ function (_React$Component) {
     _classCallCheck(this, Submission);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
+    _this.state = {
+      answerButton: "Show Solution"
+    };
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleAnswer = _this.handleAnswer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1059,18 +1063,36 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "handleAnswer",
+    value: function handleAnswer(e) {
+      e.preventDefault(); // Add additional function that will change the display class of the answer <p> tag to visible or hidden
+
+      if (this.state.answerButton === "Show Solution") {
+        this.setState({
+          answerButton: "Hide Solution"
+        });
+      } else {
+        this.setState({
+          answerButton: "Show Solution"
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var title, body;
+      var title, body, answer;
 
       if (this.props.submission) {
         title = this.props.submission.title;
         body = this.props.submission.body;
+        answer = this.props.submission.answer;
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn"
-      }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleAnswer
+      }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn/submission/".concat(this.props.submissionId, "/edit")
       }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleDelete
