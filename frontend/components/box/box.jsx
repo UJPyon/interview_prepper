@@ -30,5 +30,5 @@ class Box extends React.Component {
     );
   }
 }
-
+ 
 export default withRouter(Box);
