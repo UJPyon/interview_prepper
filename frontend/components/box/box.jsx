@@ -22,4 +22,4 @@ class Box extends React.Component {
   }
 }
 
-export default withRouter(Home);
+export default withRouter(Box);
