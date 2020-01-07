@@ -14,9 +14,18 @@ class Box extends React.Component {
 
   render() {
 
+    let boxSubs;
+    if (this.props.box) {
+      boxSubs = this.props.box.map(sub => {
+        return <li key={sub.id}>{sub.title}</li>
+      });
+    }
+
     return (
       <>
-
+        <ul>
+          {boxSubs}
+        </ul>
       </>
     );
   }
