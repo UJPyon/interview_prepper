@@ -23,6 +23,7 @@ class Box extends React.Component {
 
     return (
       <>
+        <h2>Here are the contents of your boxes:</h2>
         <ul>
           {boxSubs}
         </ul>
