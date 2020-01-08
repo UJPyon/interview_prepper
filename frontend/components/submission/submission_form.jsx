@@ -13,6 +13,7 @@ class SubmissionForm extends React.Component {
       submittor_id: this.props.currentUserId || "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBoxMove = this.handleBoxMove.bind(this);
     this.update = this.update.bind(this);
   }
 
@@ -29,6 +30,14 @@ class SubmissionForm extends React.Component {
       this.props.updateSub(sub).then(() => this.props.history.push(`/learn/submission/${this.props.submissionId}`));
     } else if (this.props.formType === "new") {
       this.props.createSub(sub).then((result) => this.props.history.push(`/learn/submission/${result.sub.id}`));
+    }
+  }
+
+  handleBoxMove(move) {
+    if (move === "forward") {
+      console.log("correct"); 
+    } else if (move === "backward") {
+      console.log("incorrect");
     }
   }
 
@@ -73,6 +82,9 @@ class SubmissionForm extends React.Component {
           />
           <input type="submit" value="Submit"/>
         </form>
+      
+        <button onClick={this.handleBoxMove("forward")}>I got it Correctly!</button>
+        <button onClick={this.handleBoxMove("backward")}>I was Incorrect.</button>
       </>
     );
   }
