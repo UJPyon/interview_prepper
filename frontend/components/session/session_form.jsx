@@ -102,6 +102,8 @@ class SessionForm extends React.Component {
           />
         </form>
 
+        <span className="session-line">&nbsp;Or&nbsp;</span>
+
         <h3>Sign Up for Free</h3>
         <p>{signupUsernameErrorMsg}</p>
         <form 
