@@ -916,9 +916,12 @@ function (_React$Component) {
         onChange: this.update("loginPassword"),
         placeholder: "Password"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-button",
         type: "submit",
         value: "Login"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sign Up for Free"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, signupUsernameErrorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "session-line"
+      }, "\xA0Or\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Sign Up for Free"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, signupUsernameErrorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-form",
         onSubmit: this.handleSignup
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1223,6 +1226,7 @@ function (_React$Component) {
       submittor_id: _this.props.currentUserId || ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleBoxMove = _this.handleBoxMove.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1250,6 +1254,15 @@ function (_React$Component) {
         this.props.createSub(sub).then(function (result) {
           return _this2.props.history.push("/learn/submission/".concat(result.sub.id));
         });
+      }
+    }
+  }, {
+    key: "handleBoxMove",
+    value: function handleBoxMove(move) {
+      if (move === "forward") {
+        console.log("correct");
+      } else if (move === "backward") {
+        console.log("incorrect");
       }
     }
   }, {
@@ -1302,7 +1315,11 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Submit"
-      })));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleBoxMove("forward")
+      }, "I got it Correctly!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleBoxMove("backward")
+      }, "I was Incorrect."));
     }
   }]);
 

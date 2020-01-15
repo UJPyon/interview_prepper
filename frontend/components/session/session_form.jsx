@@ -115,7 +115,7 @@ class SessionForm extends React.Component {
             type="text"
             onChange={this.update("signupUsername")}
             placeholder="Enter a New Username"
-            />
+          />
 
           <p>{signupPasswordErrorMsg}</p>
           <input
