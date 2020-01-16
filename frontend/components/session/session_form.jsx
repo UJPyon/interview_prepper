@@ -75,62 +75,64 @@ class SessionForm extends React.Component {
     const signupPasswordErrorMsg = this.errorDoesExist(this.state.signupError2);
 
     return (
-      <section className="session">
-        <h2>Let's Get Back to Studying</h2>
-        <p>{loginErrorMsg}</p>
-        <form 
-          className="session-form"
-          onSubmit={this.handleLogin}>
-            
-          <input
-            className={loginInputClass}
-            type="text"
-            onChange={this.update("loginUsername")}
-            placeholder="Username"
-          />
+      <section className="main-home">
+        <section className="session">
+          <h2>Let's Get Back to Studying</h2>
+          <p>{loginErrorMsg}</p>
+          <form 
+            className="session-form"
+            onSubmit={this.handleLogin}>
+              
+            <input
+              className={loginInputClass}
+              type="text"
+              onChange={this.update("loginUsername")}
+              placeholder="Username"
+            />
 
-          <input
-            className={loginInputClass}
-            type="password"
-            onChange={this.update("loginPassword")}
-            placeholder="Password"
-          />
+            <input
+              className={loginInputClass}
+              type="password"
+              onChange={this.update("loginPassword")}
+              placeholder="Password"
+            />
 
-          <input
-            className="session-button"
-            type="submit"
-            value="Login"
-          />
-        </form>
+            <input
+              className="session-button"
+              type="submit"
+              value="Login"
+            />
+          </form>
 
-        <span className="session-line">&nbsp;Or&nbsp;</span>
+          <span className="session-line">&nbsp;Or&nbsp;</span>
 
-        <h3>Sign Up for Free</h3>
-        <p>{signupUsernameErrorMsg}</p>
-        <form 
-          className="session-form"
-          onSubmit={this.handleSignup}>
-          <input
-            className={signupUsernameInputClass}
-            type="text"
-            onChange={this.update("signupUsername")}
-            placeholder="Enter a New Username"
-          />
+          <h3>Sign Up for Free</h3>
+          <p>{signupUsernameErrorMsg}</p>
+          <form 
+            className="session-form"
+            onSubmit={this.handleSignup}>
+            <input
+              className={signupUsernameInputClass}
+              type="text"
+              onChange={this.update("signupUsername")}
+              placeholder="Enter a New Username"
+            />
 
-          <p>{signupPasswordErrorMsg}</p>
-          <input
-            className={signupPasswordInputClass}
-            type="password"
-            onChange={this.update("signupPassword")}
-            placeholder="Create a New Password"
-          />
+            <p>{signupPasswordErrorMsg}</p>
+            <input
+              className={signupPasswordInputClass}
+              type="password"
+              onChange={this.update("signupPassword")}
+              placeholder="Create a New Password"
+            />
 
-          <input
-            className="session-button"
-            type="submit"
-            value="Sign Up"
-          />
-        </form>
+            <input
+              className="session-button"
+              type="submit"
+              value="Sign Up"
+            />
+          </form>
+        </section>
       </section>
     );
   }

@@ -421,9 +421,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "main-home"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
     component: _session_session_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -446,7 +444,7 @@ var App = function App() {
     exact: true,
     path: "/learn/submission/:submissionId/edit",
     component: _submission_submission_form_edit_container__WEBPACK_IMPORTED_MODULE_7__["default"]
-  })));
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -903,6 +901,8 @@ function (_React$Component) {
       var signupUsernameErrorMsg = this.errorDoesExist(this.state.signupError1, this.state.signupError3);
       var signupPasswordErrorMsg = this.errorDoesExist(this.state.signupError2);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "main-home"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "session"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Let's Get Back to Studying"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, loginErrorMsg), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "session-form",
@@ -940,7 +940,7 @@ function (_React$Component) {
         className: "session-button",
         type: "submit",
         value: "Sign Up"
-      })));
+      }))));
     }
   }]);
 

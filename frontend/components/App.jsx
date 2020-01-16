@@ -12,14 +12,12 @@ const App = () => {
 
   return (
     <>
-      <div className="main-home">
-        <AuthRoute exact path='/' component={SessionFormContainer} />
-        <ProtectedRoute path='/learn' component={NavbarContainer} />
-        <ProtectedRoute exact path='/learn' component={HomeContainer} />
-        <ProtectedRoute exact path='/learn/new' component={SubmissionFormNewContainer} />
-        <ProtectedRoute exact path='/learn/submission/:submissionId' component={SubmissionContainer} />
-        <ProtectedRoute exact path='/learn/submission/:submissionId/edit' component={SubmissionFormEditContainer} />
-      </div>
+      <AuthRoute exact path='/' component={SessionFormContainer} />
+      <ProtectedRoute path='/learn' component={NavbarContainer} />
+      <ProtectedRoute exact path='/learn' component={HomeContainer} />
+      <ProtectedRoute exact path='/learn/new' component={SubmissionFormNewContainer} />
+      <ProtectedRoute exact path='/learn/submission/:submissionId' component={SubmissionContainer} />
+      <ProtectedRoute exact path='/learn/submission/:submissionId/edit' component={SubmissionFormEditContainer} />
     </>
   );
 };
