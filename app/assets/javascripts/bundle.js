@@ -1095,15 +1095,17 @@ function (_React$Component) {
         answer = this.props.submission.answer;
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/learn"
-      }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "submission"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleAnswer
       }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn/submission/".concat(this.props.submissionId, "/edit")
       }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleDelete
-      }, "Delete Submission"));
+      }, "Delete Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/learn"
+      }, "Back to Index Page"));
     }
   }]);
 
@@ -1285,7 +1287,7 @@ function (_React$Component) {
 
       if (this.props.formType === "edit") {
         returnLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/learn/".concat(this.props.submissionId)
+          to: "/learn/submission/".concat(this.props.submissionId)
         }, "Back to Submission");
       } else if (this.props.formType === "new") {
         returnLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1293,7 +1295,9 @@ function (_React$Component) {
         }, "Back to Index Page");
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, returnLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "submission-form"
+      }, returnLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "title"

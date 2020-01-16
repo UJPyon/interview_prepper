@@ -1,0 +1,59 @@
+.submission {
+  margin-top: 60px;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.submission > h2 {
+  padding-top: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.submission > p {
+  margin-top: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.submission > a:first-of-type, .submission > button {
+  background: mediumpurple;
+  height: 50px;
+  width: 120px;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 13px; 
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submission > a:first-of-type:hover {
+  background: purple;
+}
+
+.submission > button:hover {
+  background: purple;
+}
+
+.submission > a:last-of-type {
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 30px;
+  color: purple;
+}
+
+.submission > a:last-of-type:hover {
+  text-decoration: underline;
+}
+
+.submission-form {
+  margin-top: 60px;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+}

@@ -50,13 +50,13 @@ class SubmissionForm extends React.Component {
   render() {
     let returnLink;
     if (this.props.formType === "edit") {
-      returnLink = <Link to={`/learn/${this.props.submissionId}`}>Back to Submission</Link>;
+      returnLink = <Link to={`/learn/submission/${this.props.submissionId}`}>Back to Submission</Link>;
     } else if (this.props.formType === "new") {
       returnLink = <Link to={'/learn'}>Back to Index Page</Link>;
     }
 
     return (
-      <>
+      <section className="submission-form">
         {returnLink}
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title</label>
@@ -85,7 +85,7 @@ class SubmissionForm extends React.Component {
       
         <button onClick={this.handleBoxMove("forward")}>I got it Correctly!</button>
         <button onClick={this.handleBoxMove("backward")}>I was Incorrect.</button>
-      </>
+      </section>
     );
   }
 }

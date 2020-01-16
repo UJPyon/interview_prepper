@@ -44,15 +44,15 @@ class Submission extends React.Component {
     }
 
     return (
-      <>
-        <Link to='/learn'>Back to Index Page</Link>
+      <section className="submission">
         <h2>{title}</h2>
         <p>{body}</p>
         <p>{answer}</p>
         <button onClick={this.handleAnswer}>{this.state.answerButton}</button>
         <Link to={`/learn/submission/${this.props.submissionId}/edit`}>Edit Submission</Link>
         <button onClick={this.handleDelete}>Delete Submission</button>
-      </>
+        <Link to='/learn'>Back to Index Page</Link>
+      </section>
     );
   }
 }
