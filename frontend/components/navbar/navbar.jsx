@@ -13,7 +13,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="navbar">
         <button>TEMP</button>
         <h1>Profile</h1>
         <button onClick={this.handleLogout}>Log Out</button>
