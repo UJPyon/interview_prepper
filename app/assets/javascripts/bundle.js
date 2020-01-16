@@ -1098,13 +1098,17 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "submission"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleAnswer
+        onClick: this.handleAnswer,
+        className: "sub-button"
       }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/learn/submission/".concat(this.props.submissionId, "/edit")
+        to: "/learn/submission/".concat(this.props.submissionId, "/edit"),
+        className: "sub-button"
       }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleDelete
+        onClick: this.handleDelete,
+        className: "sub-button"
       }, "Delete Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/learn"
+        to: "/learn",
+        className: "back-link"
       }, "Back to Index Page"));
     }
   }]);
@@ -1287,18 +1291,21 @@ function (_React$Component) {
 
       if (this.props.formType === "edit") {
         returnLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/learn/submission/".concat(this.props.submissionId)
+          to: "/learn/submission/".concat(this.props.submissionId),
+          className: "back-link"
         }, "Back to Submission");
       } else if (this.props.formType === "new") {
         returnLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: '/learn'
+          to: '/learn',
+          className: "back-link"
         }, "Back to Index Page");
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "submission-form"
-      }, returnLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
+        className: "submission"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        className: "sub-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "title"
       }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1322,12 +1329,15 @@ function (_React$Component) {
         value: this.state.answer
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
-        value: "Submit"
+        value: "Submit",
+        className: "sub-button"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleBoxMove("forward")
+        onClick: this.handleBoxMove("forward"),
+        className: "sub-button"
       }, "I got it Correctly!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleBoxMove("backward")
-      }, "I was Incorrect."));
+        onClick: this.handleBoxMove("backward"),
+        className: "sub-button"
+      }, "I was Incorrect."), returnLink);
     }
   }]);
 

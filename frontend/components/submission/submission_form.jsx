@@ -50,15 +50,14 @@ class SubmissionForm extends React.Component {
   render() {
     let returnLink;
     if (this.props.formType === "edit") {
-      returnLink = <Link to={`/learn/submission/${this.props.submissionId}`}>Back to Submission</Link>;
+      returnLink = <Link to={`/learn/submission/${this.props.submissionId}`} className="back-link">Back to Submission</Link>;
     } else if (this.props.formType === "new") {
-      returnLink = <Link to={'/learn'}>Back to Index Page</Link>;
+      returnLink = <Link to={'/learn'} className="back-link">Back to Index Page</Link>;
     }
 
     return (
-      <section className="submission-form">
-        {returnLink}
-        <form onSubmit={this.handleSubmit}>
+      <section className="submission">
+        <form onSubmit={this.handleSubmit} className="sub-form">
           <label htmlFor="title">Title</label>
           <input 
             id="title"
@@ -80,11 +79,21 @@ class SubmissionForm extends React.Component {
             onChange={this.update("answer")}
             value={this.state.answer}
           />
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Submit" className="sub-button"/>
         </form>
       
-        <button onClick={this.handleBoxMove("forward")}>I got it Correctly!</button>
-        <button onClick={this.handleBoxMove("backward")}>I was Incorrect.</button>
+        <button 
+          onClick={this.handleBoxMove("forward")}
+          className="sub-button">
+          I got it Correctly!
+        </button>
+        <button 
+          onClick={this.handleBoxMove("backward")}
+          className="sub-button">
+          I was Incorrect.
+        </button>
+
+        {returnLink}
       </section>
     );
   }

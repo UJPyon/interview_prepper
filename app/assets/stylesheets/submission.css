@@ -17,7 +17,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.submission > a:first-of-type, .submission > button {
+.sub-button {
   background: mediumpurple;
   height: 50px;
   width: 120px;
@@ -32,28 +32,35 @@
   align-items: center;
 }
 
-.submission > a:first-of-type:hover {
+.sub-button:hover {
   background: purple;
 }
 
-.submission > button:hover {
-  background: purple;
-}
-
-.submission > a:last-of-type {
+.back-link {
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 30px;
   color: purple;
 }
 
-.submission > a:last-of-type:hover {
+.back-link:hover {
   text-decoration: underline;
 }
 
-.submission-form {
-  margin-top: 60px;
-  margin-left: 60px;
+.sub-form {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  justify-content: center;
+}
+
+.sub-form > input:nth-of-type(2) {
+  height: 300px;
+}
+
+.sub-form > label {
+  margin: 30px, 0 10px, 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
 }
