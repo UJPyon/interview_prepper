@@ -13,27 +13,25 @@ class Box extends React.Component {
     this.props.fetchAllBoxes();
   }
 
-  openSubmission(e) {
-    e.preventDefault();
-    this.props.history.push(`/learn/submission/${}`);
+  openSubmission(subId) {
+    this.props.history.push(`/learn/submission/${subId}`);
   }
 
   render() {
-
     let boxSubs;
     if (this.props.box) {
       boxSubs = this.props.box.map(sub => {
-        return <li onClick={this.openSubmission} key={sub.id}>{sub.title}</li>
+        return <li onClick={this.openSubmission(sub.id)} key={sub.id}>{sub.title}</li>
       });
     }
 
     return (
-      <>
+      <div id="sidebar">
         <h2>Here's a Look at What's in Your Boxes:</h2>
         <ul>
           {boxSubs}
         </ul>
-      </>
+      </div>
     );
   }
 }

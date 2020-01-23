@@ -9,6 +9,8 @@ class Navbar extends React.Component {
       sidebarShow: false
     };
     this.handleLogout = this.handleLogout.bind(this);
+    this.showSidebar = this.showSidebar.bind(this);
+    this.hideSidebar = this.hideSidebar.bind(this);
   }
 
   handleLogout() {
@@ -16,7 +18,8 @@ class Navbar extends React.Component {
   }
 
   showSidebar(e) {
-    let ele = document.getElementByClass("sidebar");
+    let ele = document.getElementById("sidebar");
+    debugger
     ele.style.visibility = "visible";
     ele.style.transition = ".2s";
     ele.style.width = "200px";
@@ -24,7 +27,8 @@ class Navbar extends React.Component {
   }
   
   hideSidebar(e) {
-    let ele = document.getElementByClass("sidebar");
+    let ele = document.getElementById("sidebar");
+    debugger
     ele.style.visibility = "hidden";
     ele.style.transition = ".2s";
     ele.style.width = "0";
@@ -32,6 +36,7 @@ class Navbar extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <div className="navbar">
         <Sidebar />

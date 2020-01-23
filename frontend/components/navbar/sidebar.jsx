@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import Box from "../box/box_container";
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -7,11 +8,9 @@ class Sidebar extends React.Component {
     }
 
     render() {
-        
+        debugger
         return (
-            <div className={"sidebar"}>
-                
-            </div>
+            <Box />
         );
     }
 }
