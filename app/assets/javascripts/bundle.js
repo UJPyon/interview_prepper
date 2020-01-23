@@ -806,7 +806,6 @@ function (_React$Component) {
     key: "showSidebar",
     value: function showSidebar(e) {
       var ele = document.getElementById("sidebar");
-      debugger;
       ele.style.visibility = "visible";
       ele.style.transition = ".2s";
       ele.style.width = "200px";
@@ -818,7 +817,6 @@ function (_React$Component) {
     key: "hideSidebar",
     value: function hideSidebar(e) {
       var ele = document.getElementById("sidebar");
-      debugger;
       ele.style.visibility = "hidden";
       ele.style.transition = ".2s";
       ele.style.width = "0";
@@ -829,10 +827,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        box: this.props
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.state.sidebarShow ? this.hideSidebar : this.showSidebar
       }, "Sidebar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleLogout
@@ -960,7 +959,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_box_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_box_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        box: this.props
+      });
     }
   }]);
 
