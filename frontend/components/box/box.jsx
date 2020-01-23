@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 class Box extends React.Component {
   constructor(props) {
     super(props);
+    this.openSubmission = this.openSubmission.bind(this);
   }
 
   componentDidMount() {
@@ -13,7 +14,8 @@ class Box extends React.Component {
   }
 
   openSubmission(e) {
-    
+    e.preventDefault();
+    this.props.history.push("/home");
   }
 
   render() {
@@ -21,7 +23,7 @@ class Box extends React.Component {
     let boxSubs;
     if (this.props.box) {
       boxSubs = this.props.box.map(sub => {
-        return <li onClick={} key={sub.id}>{sub.title}</li>
+        return <li onClick={this.openSubmission} key={sub.id}>{sub.title}</li>
       });
     }
 
