@@ -15,7 +15,7 @@ class Box extends React.Component {
 
   openSubmission(e) {
     e.preventDefault();
-    this.props.history.push("/home");
+    this.props.history.push(`/learn/submission/${}`);
   }
 
   render() {
