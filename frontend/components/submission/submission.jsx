@@ -7,6 +7,7 @@ class Submission extends React.Component {
     super(props);
     this.state = {
       answerButton: "Show Solution",
+      class: "hide"
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
@@ -29,9 +30,9 @@ class Submission extends React.Component {
     e.preventDefault();
     // Add additional function that will change the display class of the answer <p> tag to visible or hidden
     if (this.state.answerButton === "Show Solution") {
-      this.setState({ answerButton: "Hide Solution" });
+      this.setState({ answerButton: "Hide Solution", class: "show" });
     } else {
-      this.setState({ answerButton: "Show Solution" });
+      this.setState({ answerButton: "Show Solution", class: "hide" });
     }
   }
 
@@ -47,7 +48,7 @@ class Submission extends React.Component {
       <section className="submission">
         <h2>{title}</h2>
         <p>{body}</p>
-        <p>{answer}</p>
+        <p className={"answer" + this.state.class}>{answer}</p>
         <button 
           onClick={this.handleAnswer} 
           className="sub-button">

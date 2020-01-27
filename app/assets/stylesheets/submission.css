@@ -64,3 +64,11 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.answershow {
+  display: flex;
+}
+
+.answerhide {
+  display: none;
+}

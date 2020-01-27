@@ -1278,7 +1278,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Submission).call(this, props));
     _this.state = {
-      answerButton: "Show Solution"
+      answerButton: "Show Solution",
+      "class": "hide"
     };
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.handleAnswer = _this.handleAnswer.bind(_assertThisInitialized(_this));
@@ -1314,11 +1315,13 @@ function (_React$Component) {
 
       if (this.state.answerButton === "Show Solution") {
         this.setState({
-          answerButton: "Hide Solution"
+          answerButton: "Hide Solution",
+          "class": "show"
         });
       } else {
         this.setState({
-          answerButton: "Show Solution"
+          answerButton: "Show Solution",
+          "class": "hide"
         });
       }
     }
@@ -1335,7 +1338,9 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "submission"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "answer" + this.state["class"]
+      }, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleAnswer,
         className: "sub-button"
       }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
