@@ -519,9 +519,9 @@ function (_React$Component) {
       var boxSubs;
       debugger;
 
-      if (this.props.box.box.boxes) {
+      if (this.props.box.box.boxes[1]) {
         debugger;
-        boxSubs = this.props.box.map(function (sub) {
+        boxSubs = this.props.box.box.boxes[1].submissionIds.map(function (sub) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             onClick: _this2.openSubmission(sub.id),
             key: sub.id
