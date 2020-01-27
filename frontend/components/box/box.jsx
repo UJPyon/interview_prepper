@@ -19,12 +19,14 @@ class Box extends React.Component {
 
   render() {
     let boxSubs;
-    if (this.props.box) {
+    debugger
+    if (this.props.box.box.boxes) {
+      debugger
       boxSubs = this.props.box.map(sub => {
         return <li onClick={this.openSubmission(sub.id)} key={sub.id}>{sub.title}</li>
       });
     }
-
+ 
     return (
       <div id="sidebar">
         <h2>Here's a Look at What's in Your Boxes:</h2>

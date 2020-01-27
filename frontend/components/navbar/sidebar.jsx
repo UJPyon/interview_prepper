@@ -10,7 +10,8 @@ class Sidebar extends React.Component {
     render() {
         debugger
         return (
-            <Box box={this.props}/>
+            // <Box box={this.props}/>
+            <div></div>
         );
     }
 }

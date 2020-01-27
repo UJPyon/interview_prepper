@@ -517,8 +517,10 @@ function (_React$Component) {
       var _this2 = this;
 
       var boxSubs;
+      debugger;
 
-      if (this.props.box) {
+      if (this.props.box.box.boxes) {
+        debugger;
         boxSubs = this.props.box.map(function (sub) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             onClick: _this2.openSubmission(sub.id),
@@ -959,9 +961,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       debugger;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_box_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        box: this.props
-      });
+      return (// <Box box={this.props}/>
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)
+      );
     }
   }]);
 
