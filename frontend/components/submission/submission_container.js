@@ -2,7 +2,8 @@ import { receiveAllUsers } from "../../actions/user_actions";
 import {
   receiveAllSubs,
   receiveSub,
-  deleteSub
+  deleteSub,
+  updateSub,
 } from "../../actions/submission_actions";
 import { receiveAllBoxes } from "../../actions/box_actions";
 import { connect } from "react-redux";
@@ -27,6 +28,7 @@ const mdp = dispatch => {
     fetchAllSubs: () => dispatch(receiveAllSubs()),
     fetchAllBoxes: () => dispatch(receiveAllBoxes()),
     receiveSub: id => dispatch(receiveSub(id)),
+    updateSub: sub => dispatch(updateSub(sub)),
     deleteSub: ({ submissionId, currentUserId }) => dispatch(deleteSub({ submissionId, currentUserId })),
   };
 };

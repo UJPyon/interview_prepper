@@ -1,2 +1,2 @@
 json.extract! submission, :id, :title, :body, :answer
-json.boxId submission.box_id
+json.box_id submission.box_id

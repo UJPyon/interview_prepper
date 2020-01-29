@@ -1326,6 +1326,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1348,6 +1350,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Submission =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1364,6 +1367,8 @@ function (_React$Component) {
       "class": "hide"
     };
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleBoxMoveForward = _this.handleBoxMoveForward.bind(_assertThisInitialized(_this));
+    _this.handleBoxMoveBackward = _this.handleBoxMoveBackward.bind(_assertThisInitialized(_this));
     _this.handleAnswer = _this.handleAnswer.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1408,6 +1413,30 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "handleBoxMoveForward",
+    value: function handleBoxMoveForward() {
+      if (this.props.submission.box_id < 4) {
+        var nextBoxId = this.props.submission.box_id + 1;
+        this.props.updateSub(Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.props.submission, {
+          box_id: nextBoxId
+        }));
+      }
+
+      console.log("correct");
+    }
+  }, {
+    key: "handleBoxMoveBackward",
+    value: function handleBoxMoveBackward() {
+      if (this.props.submission.box_id > 1) {
+        var prevBoxId = this.props.submission.box_id - 1;
+        this.props.updateSub(Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.props.submission, {
+          box_id: prevBoxId
+        }));
+      }
+
+      console.log("incorrect");
+    }
+  }, {
     key: "render",
     value: function render() {
       var title, body, answer;
@@ -1431,7 +1460,13 @@ function (_React$Component) {
       }, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleAnswer,
         className: "sub-button"
-      }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleBoxMoveForward,
+        className: "sub-button"
+      }, "I got it Correctly!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleBoxMoveBackward,
+        className: "sub-button"
+      }, "I was Incorrect."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn",
         className: "back-link"
       }, "Back to Index Page"));
@@ -1490,6 +1525,9 @@ var mdp = function mdp(dispatch) {
     },
     receiveSub: function receiveSub(id) {
       return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["receiveSub"])(id));
+    },
+    updateSub: function updateSub(sub) {
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_1__["updateSub"])(sub));
     },
     deleteSub: function deleteSub(_ref) {
       var submissionId = _ref.submissionId,
@@ -1561,7 +1599,6 @@ function (_React$Component) {
       submittor_id: _this.props.currentUserId || ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleBoxMove = _this.handleBoxMove.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1589,15 +1626,6 @@ function (_React$Component) {
         this.props.createSub(sub).then(function (result) {
           return _this2.props.history.push("/learn/submission/".concat(result.sub.id));
         });
-      }
-    }
-  }, {
-    key: "handleBoxMove",
-    value: function handleBoxMove(move) {
-      if (move === "forward") {
-        console.log("correct");
-      } else if (move === "backward") {
-        console.log("incorrect");
       }
     }
   }, {
@@ -1656,13 +1684,7 @@ function (_React$Component) {
         type: "submit",
         value: "Submit",
         className: "sub-button"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleBoxMove("forward"),
-        className: "sub-button"
-      }, "I got it Correctly!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleBoxMove("backward"),
-        className: "sub-button"
-      }, "I was Incorrect."), returnLink);
+      })), returnLink);
     }
   }]);
 
@@ -2372,6 +2394,7 @@ var createSubmission = function createSubmission(submission) {
   });
 };
 var updateSubmission = function updateSubmission(submission) {
+  debugger;
   return $.ajax({
     method: "PATCH",
     url: "api/submissions/".concat(submission.id),

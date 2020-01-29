@@ -5,11 +5,19 @@
   flex-direction: column;
 }
 
-.submission > div {
+.submission > div:first-of-type {
   display: flex;
 }
 
-.submission > div > a {
+.submission > div:nth-of-type(2) {
+  display: flex;
+}
+
+.submission > div:first-of-type > a {
+  margin-right: 20px;
+}
+
+.submission > div:nth-of-type(2) > button {
   margin-right: 20px;
 }
 

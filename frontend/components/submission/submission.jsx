@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import NavbarContainer from "../navbar/navbar_container";
+import { merge } from 'lodash';
 
 class Submission extends React.Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class Submission extends React.Component {
       class: "hide"
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleBoxMoveForward = this.handleBoxMoveForward.bind(this);
+    this.handleBoxMoveBackward = this.handleBoxMoveBackward.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
   }
 
@@ -34,6 +37,22 @@ class Submission extends React.Component {
     } else {
       this.setState({ answerButton: "Show Solution", class: "hide" });
     }
+  }
+
+  handleBoxMoveForward() {
+    if (this.props.submission.box_id < 4) {
+      let nextBoxId = this.props.submission.box_id + 1;
+      this.props.updateSub(merge(this.props.submission, { box_id: nextBoxId }));
+    }
+    console.log("correct");
+  }
+
+  handleBoxMoveBackward() {
+    if (this.props.submission.box_id > 1) {
+      let prevBoxId = this.props.submission.box_id - 1;
+      this.props.updateSub(merge(this.props.submission, { box_id: prevBoxId }));
+    }
+    console.log("incorrect");
   }
 
   render() {
@@ -65,6 +84,17 @@ class Submission extends React.Component {
           onClick={this.handleAnswer} 
           className="sub-button">
           {this.state.answerButton}
+        </button>
+
+        <button
+          onClick={this.handleBoxMoveForward}
+          className="sub-button">
+          I got it Correctly!
+        </button>
+        <button
+          onClick={this.handleBoxMoveBackward}
+          className="sub-button">
+          I was Incorrect.
         </button>
         <Link to='/learn' className="back-link">Back to Index Page</Link>
       </section>

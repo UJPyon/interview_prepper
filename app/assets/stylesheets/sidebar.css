@@ -1,6 +1,6 @@
 .sidebar-ul {
     position: fixed;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 .sidebar-header {
@@ -8,6 +8,7 @@
     color: white;
     font-size: 24px;
     font-weight: bold;
+    padding: 20px;
 }
 
 .subs-show {
