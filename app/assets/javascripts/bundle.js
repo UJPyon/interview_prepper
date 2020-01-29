@@ -821,7 +821,7 @@ function (_React$Component) {
       var ele = document.getElementById("sidebar");
       ele.style.visibility = "visible";
       ele.style.transition = ".3s";
-      ele.style.width = "200px";
+      ele.style.width = "300px";
       this.setState({
         sidebarShow: true
       });
@@ -980,7 +980,11 @@ function (_React$Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, content));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "sidebar-header"
+      }, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "sidebar-ul"
+      }, content));
     }
   }]);
 
@@ -1415,18 +1419,18 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "submission"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "answer" + this.state["class"]
-      }, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleAnswer,
-        className: "sub-button"
-      }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn/submission/".concat(this.props.submissionId, "/edit"),
         className: "sub-button"
       }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleDelete,
         className: "sub-button"
-      }, "Delete Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Delete Submission")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "answer" + this.state["class"]
+      }, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleAnswer,
+        className: "sub-button"
+      }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn",
         className: "back-link"
       }, "Back to Index Page"));

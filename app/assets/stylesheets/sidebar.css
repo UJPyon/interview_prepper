@@ -1,3 +1,41 @@
+.sidebar-ul {
+    position: fixed;
+    margin-top: 50px;
+}
+
+.sidebar-header {
+    position: fixed;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.subs-show {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 0 10px;
+}
+
+.subs-show > li {
+    margin: 2px 0;
+}
+
+.subs-hide {
+    display: none;
+}
+
+.sidebar-box {
+    color: white;
+    border-bottom:1px solid gray;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    z-index: -5;
+}
+
+.sidebar-box:hover {
+    cursor: pointer;
+}
 
 #sidebar {
     visibility: none;
@@ -15,20 +53,3 @@
 #sidebar::-webkit-scrollbar { width: 0 };
 #sidebar { overflow: -moz-scrollbars-none; };
 #sidebar { -ms-overflow-style: none; };
-
-.subs-show {
-    display: flex;
-    flex-direction: column;
-}
-
-.subs-hide {
-    display: none;
-}
-
-.sidebar-box {
-    color: white;
-
-}
-.sidebar-box:hover {
-    cursor: pointer;
-}

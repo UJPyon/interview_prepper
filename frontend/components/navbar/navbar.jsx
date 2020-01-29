@@ -21,7 +21,7 @@ class Navbar extends React.Component {
     let ele = document.getElementById("sidebar");
     ele.style.visibility = "visible";
     ele.style.transition = ".3s";
-    ele.style.width = "200px";
+    ele.style.width = "300px";
     this.setState({sidebarShow: true});
   }
   

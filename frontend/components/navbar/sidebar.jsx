@@ -14,8 +14,8 @@ class Sidebar extends React.Component {
 
         return (
             <div id="sidebar">
-                <h2>Submission Boxes</h2>
-                <ul>
+                <h2 className="sidebar-header">Submission Boxes</h2>
+                <ul className="sidebar-ul">
                     {content}
                 </ul>
             </div>

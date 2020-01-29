@@ -5,6 +5,14 @@
   flex-direction: column;
 }
 
+.submission > div {
+  display: flex;
+}
+
+.submission > div > a {
+  margin-right: 20px;
+}
+
 .submission > h2 {
   padding-top: 30px;
   font-family: Arial, Helvetica, sans-serif;

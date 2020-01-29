@@ -47,22 +47,24 @@ class Submission extends React.Component {
     return (
       <section className="submission">
         <h2>{title}</h2>
+        <div>
+          <Link
+            to={`/learn/submission/${this.props.submissionId}/edit`}
+            className="sub-button">
+            Edit Submission
+          </Link>
+          <button
+            onClick={this.handleDelete}
+            className="sub-button">
+            Delete Submission
+          </button>
+        </div>
         <p>{body}</p>
         <p className={"answer" + this.state.class}>{answer}</p>
         <button 
           onClick={this.handleAnswer} 
           className="sub-button">
           {this.state.answerButton}
-        </button>
-        <Link 
-          to={`/learn/submission/${this.props.submissionId}/edit`}
-          className="sub-button">
-          Edit Submission
-        </Link>
-        <button 
-          onClick={this.handleDelete}
-          className="sub-button">
-          Delete Submission
         </button>
         <Link to='/learn' className="back-link">Back to Index Page</Link>
       </section>
