@@ -512,8 +512,8 @@ function (_React$Component) {
 
   _createClass(Box, [{
     key: "openSubmission",
-    value: function openSubmission(subId) {
-      this.props.history.push("/learn/submission/".concat(subId));
+    value: function openSubmission(e) {
+      this.props.history.push("/learn/submission/".concat(e.target.id));
     }
   }, {
     key: "toggleSubmissions",
@@ -532,8 +532,9 @@ function (_React$Component) {
       var subs = this.props.box.submissionIds.map(function (subId) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: subId,
-          onClick: function onClick(subId) {
-            return _this2.openSubmission(subId);
+          id: subId,
+          onClick: function onClick(e) {
+            return _this2.openSubmission(e);
           }
         }, _this2.props.submissions[subId].title);
       });

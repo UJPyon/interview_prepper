@@ -11,8 +11,8 @@ class Box extends React.Component {
     this.toggleSubmissions = this.toggleSubmissions.bind(this);
   }
 
-  openSubmission(subId) {
-    this.props.history.push(`/learn/submission/${subId}`);
+  openSubmission(e) {
+    this.props.history.push(`/learn/submission/${e.target.id}`);
   }
 
   toggleSubmissions() {
@@ -26,7 +26,8 @@ class Box extends React.Component {
       return (
         <li 
           key={subId} 
-          onClick={(subId) => this.openSubmission(subId)}>
+          id={subId}
+          onClick={(e) => this.openSubmission(e)}>
           {this.props.submissions[subId].title}
         </li>
       );
