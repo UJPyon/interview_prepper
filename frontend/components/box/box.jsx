@@ -7,11 +7,11 @@ class Box extends React.Component {
     this.openSubmission = this.openSubmission.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchAllUsers();
-    this.props.fetchAllSubs();
-    this.props.fetchAllBoxes();
-  }
+  // componentDidMount() {
+  //   this.props.fetchAllUsers();
+  //   this.props.fetchAllSubs();
+  //   this.props.fetchAllBoxes();
+  // }
 
   openSubmission(subId) {
     this.props.history.push(`/learn/submission/${subId}`);
@@ -20,9 +20,9 @@ class Box extends React.Component {
   render() {
     let boxSubs;
     debugger
-    if (this.props.box.box.boxes[1]) {
+    if (this.props.boxes[1]) {
       debugger
-      boxSubs = this.props.box.box.boxes[1].submissionIds.map(sub => {
+      boxSubs = this.props.boxes[1].submissionIds.map(sub => {
         return <li onClick={this.openSubmission(sub.id)} key={sub.id}>{sub.title}</li>
       });
     }

@@ -34,9 +34,10 @@ class Navbar extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <div className="navbar">
-        <Sidebar box={this.props}/>
+        <Sidebar boxes={this.props.boxes}/>
         <button onClick={this.state.sidebarShow 
           ? this.hideSidebar 
           : this.showSidebar}>

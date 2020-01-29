@@ -497,16 +497,14 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Box).call(this, props));
     _this.openSubmission = _this.openSubmission.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //   this.props.fetchAllUsers();
+  //   this.props.fetchAllSubs();
+  //   this.props.fetchAllBoxes();
+  // }
+
 
   _createClass(Box, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchAllUsers();
-      this.props.fetchAllSubs();
-      this.props.fetchAllBoxes();
-    }
-  }, {
     key: "openSubmission",
     value: function openSubmission(subId) {
       this.props.history.push("/learn/submission/".concat(subId));
@@ -519,9 +517,9 @@ function (_React$Component) {
       var boxSubs;
       debugger;
 
-      if (this.props.box.box.boxes[1]) {
+      if (this.props.boxes[1]) {
         debugger;
-        boxSubs = this.props.box.box.boxes[1].submissionIds.map(function (sub) {
+        boxSubs = this.props.boxes[1].submissionIds.map(function (sub) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             onClick: _this2.openSubmission(sub.id),
             key: sub.id
@@ -829,10 +827,11 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        box: this.props
+        boxes: this.props.boxes
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.state.sidebarShow ? this.hideSidebar : this.showSidebar
       }, "Sidebar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -960,10 +959,24 @@ function (_React$Component) {
   _createClass(Sidebar, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
+      var boxSubs;
       debugger;
-      return (// <Box box={this.props}/>
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)
-      );
+
+      if (this.props.boxes[1]) {
+        debugger;
+        boxSubs = this.props.boxes[1].submissionIds.map(function (sub) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            onClick: _this.openSubmission(sub.id),
+            key: sub.id
+          }, sub.title);
+        });
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "sidebar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
     }
   }]);
 

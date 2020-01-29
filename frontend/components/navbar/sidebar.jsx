@@ -8,10 +8,21 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        let boxSubs;
         debugger
+        if (this.props.boxes[1]) {
+            debugger
+            boxSubs = this.props.boxes[1].submissionIds.map(sub => {
+                return <li onClick={this.openSubmission(sub.id)} key={sub.id}>{sub.title}</li>
+            });
+        }
+
         return (
-            // <Box box={this.props}/>
-            <div></div>
+            <div id="sidebar">
+                <ul>
+                    {boxSubs}
+                </ul>
+            </div>
         );
     }
 }
