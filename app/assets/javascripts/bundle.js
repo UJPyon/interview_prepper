@@ -820,7 +820,7 @@ function (_React$Component) {
     value: function showSidebar(e) {
       var ele = document.getElementById("sidebar");
       ele.style.visibility = "visible";
-      ele.style.transition = ".1s";
+      ele.style.transition = ".3s";
       ele.style.width = "200px";
       this.setState({
         sidebarShow: true
@@ -831,7 +831,7 @@ function (_React$Component) {
     value: function hideSidebar(e) {
       var ele = document.getElementById("sidebar");
       ele.style.visibility = "hidden";
-      ele.style.transition = ".1s";
+      ele.style.transition = ".3s";
       ele.style.width = "0";
       this.setState({
         sidebarShow: false

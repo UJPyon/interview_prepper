@@ -20,7 +20,7 @@ class Navbar extends React.Component {
   showSidebar(e) {
     let ele = document.getElementById("sidebar");
     ele.style.visibility = "visible";
-    ele.style.transition = ".1s";
+    ele.style.transition = ".3s";
     ele.style.width = "200px";
     this.setState({sidebarShow: true});
   }
@@ -28,7 +28,7 @@ class Navbar extends React.Component {
   hideSidebar(e) {
     let ele = document.getElementById("sidebar");
     ele.style.visibility = "hidden";
-    ele.style.transition = ".1s";
+    ele.style.transition = ".3s";
     ele.style.width = "0";
     this.setState({sidebarShow: false});
   }

@@ -24,7 +24,9 @@ class Box extends React.Component {
   render() {
     let subs = this.props.box.submissionIds.map(subId => {
       return (
-        <li key={subId} onClick={(subId) => this.openSubmission(subId)}>
+        <li 
+          key={subId} 
+          onClick={(subId) => this.openSubmission(subId)}>
           {this.props.submissions[subId].title}
         </li>
       );
