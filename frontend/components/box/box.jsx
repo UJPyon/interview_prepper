@@ -4,32 +4,42 @@ import { Link, withRouter } from "react-router-dom";
 class Box extends React.Component {
   constructor(props) {
     super(props);
-    this.openSubmission = this.openSubmission.bind(this);
+    // this.openSubmission = this.openSubmission.bind(this);
+    this.showSubmissions = this.showSubmissions.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.props.fetchAllUsers();
-  //   this.props.fetchAllSubs();
-  //   this.props.fetchAllBoxes();
-  // }
 
   openSubmission(subId) {
     this.props.history.push(`/learn/submission/${subId}`);
   }
 
+  showSubmissions(id) {
+    this.props.boxes[id].submissionIds.map(id => {
+      return (
+        <li key={id} onClick={this.openSubmission(id)}>
+          {this.props.submissions[id].title}
+        </li>
+      );
+    });
+  }
+
   render() {
     let boxSubs;
-    debugger
-    if (this.props.boxes[1]) {
-      debugger
-      boxSubs = this.props.boxes[1].submissionIds.map(sub => {
-        return <li onClick={this.openSubmission(sub.id)} key={sub.id}>{sub.title}</li>
+    let boxes = this.props.boxes;
+    let boxIds = Object.keys(boxes);
+    if (boxIds.length) {
+      boxSubs = boxIds.map(id => {
+        return (
+          <li key={id} onClick={this.showSubmissions(id)}>
+            <h3>{boxes[id].name}</h3>
+            <p>{boxes[id].description}</p>
+          </li>
+        );
       });
     }
- 
+
     return (
       <div id="sidebar">
-        <h2>Here's a Look at What's in Your Boxes:</h2>
+        <h2>Submission Boxes</h2>
         <ul>
           {boxSubs}
         </ul>

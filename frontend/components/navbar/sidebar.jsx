@@ -5,56 +5,61 @@ import Box from "../box/box_container";
 class Sidebar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            sidebar: "hide"
-        };
-        this.expandBox = this.expandBox.bind(this);
-        this.expandSubmissions = this.expandSubmissions.bind(this);
+        // this.state = {
+        //     sidebarContent: "boxes",
+        // };
+        this.showBox = this.showBox.bind(this);
+        this.showSubmissions = this.showSubmissions.bind(this);
+        this.openSubmission = this.openSubmission.bind(this);
     }
 
-    handleClick(e) {
-        this.state.sidebar === "show"
-            ? this.setState({ button: "hide" })
-            : this.setState({ button: "show" });
-    }
+    // sidebarContentClick(e) {
+    //     this.state.sidebarContent === "boxes"
+    //         ? this.setState({ sidebarContent: "subs" })
+    //         : this.setState({ sidebarContent: "boxes" });
+    // }
 
-    expandBox(id) {
-        this.props.boxes[id].submissionIds.map(id => {
-            return (
-                <li key={id} onClick={this.expandSubmissions}>
-                    {this.props.submissions[id].title}
-                </li>
-            );
-        });
-    }
-    
-    expandSubmissions() {
-
-    }
-
-    render() {
+    showBox() {
+        let content;
         let boxes = this.props.boxes;
-        let boxSubs;
-        debugger
-        if (Object.keys(this.props.boxes).length > 0) {
-            debugger
-            let boxIds = Object.keys(this.props.boxes);
-            boxSubs = boxIds.map(id => {
-                debugger
+        let boxIds = Object.keys(boxes);
+        if (boxIds.length) {
+            content = boxIds.map(id => {
                 return (
-                    <li onClick={this.expandBox(id)}>
+                    <li key={id} onClick={this.showSubmissions(id)}>
                         <h3>{boxes[id].name}</h3>
                         <p>{boxes[id].description}</p>
                     </li>
                 );
             });
         }
+        return content;
+    }
+    
+    showSubmissions(id) {
+        this.props.boxes[id].submissionIds.map(id => {
+            return (
+                <li key={id} onClick={this.openSubmission(id)}>
+                    {this.props.submissions[id].title}
+                </li>
+            );
+        });
+    }
 
+    openSubmission(subId) {
+        this.props.history.push(`/learn/submission/${subId}`);
+    }
+
+    render() {
+        // let content = this.showBox();
+        // this.state.sidebarContent === "boxes"
+        //     ? content = <Boxes />
+        //     : content = <Submissions id={}/>;
         return (
             <div id="sidebar">
                 <h2>Submission Boxes</h2>
                 <ul>
-                    {boxSubs}
+                    {/* <Boxes /> */}
                 </ul>
             </div>
         );

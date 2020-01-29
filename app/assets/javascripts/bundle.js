@@ -407,9 +407,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_session_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/session_form_container */ "./frontend/components/session/session_form_container.js");
 /* harmony import */ var _home_home_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/home_container */ "./frontend/components/home/home_container.js");
 /* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
-/* harmony import */ var _submission_submission_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./submission/submission_container */ "./frontend/components/submission/submission_container.js");
-/* harmony import */ var _submission_submission_form_edit_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./submission/submission_form_edit_container */ "./frontend/components/submission/submission_form_edit_container.js");
-/* harmony import */ var _submission_submission_form_new_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./submission/submission_form_new_container */ "./frontend/components/submission/submission_form_new_container.js");
+/* harmony import */ var _navbar_sidebar_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./navbar/sidebar_container */ "./frontend/components/navbar/sidebar_container.js");
+/* harmony import */ var _submission_submission_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./submission/submission_container */ "./frontend/components/submission/submission_container.js");
+/* harmony import */ var _submission_submission_form_edit_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./submission/submission_form_edit_container */ "./frontend/components/submission/submission_form_edit_container.js");
+/* harmony import */ var _submission_submission_form_new_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./submission/submission_form_new_container */ "./frontend/components/submission/submission_form_new_container.js");
+
 
 
 
@@ -427,6 +429,11 @@ var App = function App() {
     component: _session_session_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/learn",
+    component: _navbar_sidebar_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "main-page"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/learn",
     component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
@@ -435,16 +442,16 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
     path: "/learn/new",
-    component: _submission_submission_form_new_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _submission_submission_form_new_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
     path: "/learn/submission/:submissionId",
-    component: _submission_submission_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _submission_submission_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
     path: "/learn/submission/:submissionId/edit",
-    component: _submission_submission_form_edit_container__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }));
+    component: _submission_submission_form_edit_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -494,15 +501,11 @@ function (_React$Component) {
 
     _classCallCheck(this, Box);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Box).call(this, props));
-    _this.openSubmission = _this.openSubmission.bind(_assertThisInitialized(_this));
-    return _this;
-  } // componentDidMount() {
-  //   this.props.fetchAllUsers();
-  //   this.props.fetchAllSubs();
-  //   this.props.fetchAllBoxes();
-  // }
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Box).call(this, props)); // this.openSubmission = this.openSubmission.bind(this);
 
+    _this.showSubmissions = _this.showSubmissions.bind(_assertThisInitialized(_this));
+    return _this;
+  }
 
   _createClass(Box, [{
     key: "openSubmission",
@@ -510,26 +513,38 @@ function (_React$Component) {
       this.props.history.push("/learn/submission/".concat(subId));
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "showSubmissions",
+    value: function showSubmissions(id) {
       var _this2 = this;
 
-      var boxSubs;
-      debugger;
+      this.props.boxes[id].submissionIds.map(function (id) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: id,
+          onClick: _this2.openSubmission(id)
+        }, _this2.props.submissions[id].title);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
 
-      if (this.props.boxes[1]) {
-        debugger;
-        boxSubs = this.props.boxes[1].submissionIds.map(function (sub) {
+      var boxSubs;
+      var boxes = this.props.boxes;
+      var boxIds = Object.keys(boxes);
+
+      if (boxIds.length) {
+        boxSubs = boxIds.map(function (id) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            onClick: _this2.openSubmission(sub.id),
-            key: sub.id
-          }, sub.title);
+            key: id,
+            onClick: _this3.showSubmissions(id)
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, boxes[id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, boxes[id].description));
         });
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Here's a Look at What's in Your Boxes:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
     }
   }]);
 
@@ -807,7 +822,7 @@ function (_React$Component) {
     value: function showSidebar(e) {
       var ele = document.getElementById("sidebar");
       ele.style.visibility = "visible";
-      ele.style.transition = ".2s";
+      ele.style.transition = ".1s";
       ele.style.width = "200px";
       this.setState({
         sidebarShow: true
@@ -818,7 +833,7 @@ function (_React$Component) {
     value: function hideSidebar(e) {
       var ele = document.getElementById("sidebar");
       ele.style.visibility = "hidden";
-      ele.style.transition = ".2s";
+      ele.style.transition = ".1s";
       ele.style.width = "0";
       this.setState({
         sidebarShow: false
@@ -830,10 +845,7 @@ function (_React$Component) {
       debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        boxes: this.props.boxes,
-        submissions: this.props.submissions
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.state.sidebarShow ? this.hideSidebar : this.showSidebar
       }, "Sidebar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleLogout
@@ -956,62 +968,68 @@ function (_React$Component) {
 
     _classCallCheck(this, Sidebar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).call(this, props));
-    _this.state = {
-      sidebar: "hide"
-    };
-    _this.expandBox = _this.expandBox.bind(_assertThisInitialized(_this));
-    _this.expandSubmissions = _this.expandSubmissions.bind(_assertThisInitialized(_this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).call(this, props)); // this.state = {
+    //     sidebarContent: "boxes",
+    // };
+
+    _this.showBox = _this.showBox.bind(_assertThisInitialized(_this));
+    _this.showSubmissions = _this.showSubmissions.bind(_assertThisInitialized(_this));
+    _this.openSubmission = _this.openSubmission.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // sidebarContentClick(e) {
+  //     this.state.sidebarContent === "boxes"
+  //         ? this.setState({ sidebarContent: "subs" })
+  //         : this.setState({ sidebarContent: "boxes" });
+  // }
+
 
   _createClass(Sidebar, [{
-    key: "handleClick",
-    value: function handleClick(e) {
-      this.state.sidebar === "show" ? this.setState({
-        button: "hide"
-      }) : this.setState({
-        button: "show"
-      });
-    }
-  }, {
-    key: "expandBox",
-    value: function expandBox(id) {
+    key: "showBox",
+    value: function showBox() {
       var _this2 = this;
 
-      this.props.boxes[id].submissionIds.map(function (id) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: id,
-          onClick: _this2.expandSubmissions
-        }, _this2.props.submissions[id].title);
-      });
-    }
-  }, {
-    key: "expandSubmissions",
-    value: function expandSubmissions() {}
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
+      var content;
       var boxes = this.props.boxes;
-      var boxSubs;
-      debugger;
+      var boxIds = Object.keys(boxes);
 
-      if (Object.keys(this.props.boxes).length > 0) {
-        debugger;
-        var boxIds = Object.keys(this.props.boxes);
-        boxSubs = boxIds.map(function (id) {
-          debugger;
+      if (boxIds.length) {
+        content = boxIds.map(function (id) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            onClick: _this3.expandBox(id)
+            key: id,
+            onClick: _this2.showSubmissions(id)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, boxes[id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, boxes[id].description));
         });
       }
 
+      return content;
+    }
+  }, {
+    key: "showSubmissions",
+    value: function showSubmissions(id) {
+      var _this3 = this;
+
+      this.props.boxes[id].submissionIds.map(function (id) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: id,
+          onClick: _this3.openSubmission(id)
+        }, _this3.props.submissions[id].title);
+      });
+    }
+  }, {
+    key: "openSubmission",
+    value: function openSubmission(subId) {
+      this.props.history.push("/learn/submission/".concat(subId));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // let content = this.showBox();
+      // this.state.sidebarContent === "boxes"
+      //     ? content = <Boxes />
+      //     : content = <Submissions id={}/>;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null));
     }
   }]);
 
@@ -1019,6 +1037,66 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Sidebar));
+
+/***/ }),
+
+/***/ "./frontend/components/navbar/sidebar_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/navbar/sidebar_container.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_submission_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/submission_actions */ "./frontend/actions/submission_actions.js");
+/* harmony import */ var _actions_box_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/box_actions */ "./frontend/actions/box_actions.js");
+/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sidebar */ "./frontend/components/navbar/sidebar.jsx");
+
+
+
+
+
+
+
+var msp = function msp(state) {
+  var users = state.entities.users;
+  var submissions = state.entities.submissions;
+  var boxes = state.entities.boxes;
+  return {
+    users: users,
+    submissions: submissions,
+    boxes: boxes
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["receiveAllUsers"])());
+    },
+    fetchAllSubs: function fetchAllSubs() {
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_3__["receiveAllSubs"])());
+    },
+    fetchAllBoxes: function fetchAllBoxes() {
+      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_4__["receiveAllBoxes"])());
+    },
+    fetchUser: function fetchUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["receiveUser"])(id));
+    },
+    fetchSub: function fetchSub(id) {
+      return dispatch(Object(_actions_submission_actions__WEBPACK_IMPORTED_MODULE_3__["receiveSub"])(id));
+    },
+    fetchBox: function fetchBox(id) {
+      return dispatch(Object(_actions_box_actions__WEBPACK_IMPORTED_MODULE_4__["receiveBox"])(id));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_sidebar__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
