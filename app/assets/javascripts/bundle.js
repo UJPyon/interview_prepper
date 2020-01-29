@@ -831,7 +831,8 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        boxes: this.props.boxes
+        boxes: this.props.boxes,
+        submissions: this.props.submissions
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.state.sidebarShow ? this.hideSidebar : this.showSidebar
       }, "Sidebar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Profile"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -933,9 +934,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -951,32 +952,66 @@ function (_React$Component) {
   _inherits(Sidebar, _React$Component);
 
   function Sidebar(props) {
+    var _this;
+
     _classCallCheck(this, Sidebar);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).call(this, props));
+    _this.state = {
+      sidebar: "hide"
+    };
+    _this.expandBox = _this.expandBox.bind(_assertThisInitialized(_this));
+    _this.expandSubmissions = _this.expandSubmissions.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Sidebar, [{
+    key: "handleClick",
+    value: function handleClick(e) {
+      this.state.sidebar === "show" ? this.setState({
+        button: "hide"
+      }) : this.setState({
+        button: "show"
+      });
+    }
+  }, {
+    key: "expandBox",
+    value: function expandBox(id) {
+      var _this2 = this;
+
+      this.props.boxes[id].submissionIds.map(function (id) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: id,
+          onClick: _this2.expandSubmissions
+        }, _this2.props.submissions[id].title);
+      });
+    }
+  }, {
+    key: "expandSubmissions",
+    value: function expandSubmissions() {}
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
+      var boxes = this.props.boxes;
       var boxSubs;
       debugger;
 
-      if (this.props.boxes[1]) {
+      if (Object.keys(this.props.boxes).length > 0) {
         debugger;
-        boxSubs = this.props.boxes[1].submissionIds.map(function (sub) {
+        var boxIds = Object.keys(this.props.boxes);
+        boxSubs = boxIds.map(function (id) {
+          debugger;
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            onClick: _this.openSubmission(sub.id),
-            key: sub.id
-          }, sub.title);
+            onClick: _this3.expandBox(id)
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, boxes[id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, boxes[id].description));
         });
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
     }
   }]);
 
