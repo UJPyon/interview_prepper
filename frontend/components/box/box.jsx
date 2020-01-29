@@ -4,46 +4,40 @@ import { Link, withRouter } from "react-router-dom";
 class Box extends React.Component {
   constructor(props) {
     super(props);
-    // this.openSubmission = this.openSubmission.bind(this);
-    this.showSubmissions = this.showSubmissions.bind(this);
+    this.state = {
+      boxSubs: "hide"
+    }
+    this.openSubmission = this.openSubmission.bind(this);
+    this.toggleSubmissions = this.toggleSubmissions.bind(this);
   }
 
   openSubmission(subId) {
     this.props.history.push(`/learn/submission/${subId}`);
   }
 
-  showSubmissions(id) {
-    this.props.boxes[id].submissionIds.map(id => {
-      return (
-        <li key={id} onClick={this.openSubmission(id)}>
-          {this.props.submissions[id].title}
-        </li>
-      );
-    });
+  toggleSubmissions() {
+    this.state.boxSubs === "hide"
+      ? this.setState({ boxSubs: "show" })
+      : this.setState({ boxSubs: "hide" });
   }
 
   render() {
-    let boxSubs;
-    let boxes = this.props.boxes;
-    let boxIds = Object.keys(boxes);
-    if (boxIds.length) {
-      boxSubs = boxIds.map(id => {
-        return (
-          <li key={id} onClick={this.showSubmissions(id)}>
-            <h3>{boxes[id].name}</h3>
-            <p>{boxes[id].description}</p>
-          </li>
-        );
-      });
-    }
+    let subs = this.props.box.submissionIds.map(subId => {
+      return (
+        <li key={subId} onClick={(subId) => this.openSubmission(subId)}>
+          {this.props.submissions[subId].title}
+        </li>
+      );
+    });
 
     return (
-      <div id="sidebar">
-        <h2>Submission Boxes</h2>
-        <ul>
-          {boxSubs}
+      <li className="sidebar-box" onClick={this.toggleSubmissions}>
+        <h4>{this.props.box.name}</h4>
+        <p>{this.props.box.description}</p>
+        <ul className={this.state.boxSubs === "show" ? "subs-show" : "subs-hide"}>
+          {subs}
         </ul>
-      </div>
+      </li>
     );
   }
 }

@@ -34,9 +34,24 @@
     justify-content: center; */
     margin: 0;
     padding: 0;
-
 }
 
 #sidebar::-webkit-scrollbar { width: 0 };
 #sidebar { overflow: -moz-scrollbars-none; };
 #sidebar { -ms-overflow-style: none; };
+
+.subs-show {
+    display: flex;
+    flex-direction: column;
+}
+
+.subs-hide {
+    display: none;
+}
+
+.sidebar-box {
+    color: white;
+}
+.sidebar-box:hover {
+    cursor: pointer;
+}

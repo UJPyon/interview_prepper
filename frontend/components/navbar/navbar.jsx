@@ -34,7 +34,6 @@ class Navbar extends React.Component {
   }
 
   render() {
-    debugger
     return (
         <div className="navbar">
           <button onClick={this.state.sidebarShow 

@@ -501,9 +501,12 @@ function (_React$Component) {
 
     _classCallCheck(this, Box);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Box).call(this, props)); // this.openSubmission = this.openSubmission.bind(this);
-
-    _this.showSubmissions = _this.showSubmissions.bind(_assertThisInitialized(_this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Box).call(this, props));
+    _this.state = {
+      boxSubs: "hide"
+    };
+    _this.openSubmission = _this.openSubmission.bind(_assertThisInitialized(_this));
+    _this.toggleSubmissions = _this.toggleSubmissions.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -513,38 +516,33 @@ function (_React$Component) {
       this.props.history.push("/learn/submission/".concat(subId));
     }
   }, {
-    key: "showSubmissions",
-    value: function showSubmissions(id) {
-      var _this2 = this;
-
-      this.props.boxes[id].submissionIds.map(function (id) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: id,
-          onClick: _this2.openSubmission(id)
-        }, _this2.props.submissions[id].title);
+    key: "toggleSubmissions",
+    value: function toggleSubmissions() {
+      this.state.boxSubs === "hide" ? this.setState({
+        boxSubs: "show"
+      }) : this.setState({
+        boxSubs: "hide"
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
-      var boxSubs;
-      var boxes = this.props.boxes;
-      var boxIds = Object.keys(boxes);
-
-      if (boxIds.length) {
-        boxSubs = boxIds.map(function (id) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: id,
-            onClick: _this3.showSubmissions(id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, boxes[id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, boxes[id].description));
-        });
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, boxSubs));
+      var subs = this.props.box.submissionIds.map(function (subId) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: subId,
+          onClick: function onClick(subId) {
+            return _this2.openSubmission(subId);
+          }
+        }, _this2.props.submissions[subId].title);
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "sidebar-box",
+        onClick: this.toggleSubmissions
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.box.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.box.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: this.state.boxSubs === "show" ? "subs-show" : "subs-hide"
+      }, subs));
     }
   }]);
 
@@ -842,7 +840,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -946,9 +943,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -964,72 +961,26 @@ function (_React$Component) {
   _inherits(Sidebar, _React$Component);
 
   function Sidebar(props) {
-    var _this;
-
     _classCallCheck(this, Sidebar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).call(this, props)); // this.state = {
-    //     sidebarContent: "boxes",
-    // };
-
-    _this.showBox = _this.showBox.bind(_assertThisInitialized(_this));
-    _this.showSubmissions = _this.showSubmissions.bind(_assertThisInitialized(_this));
-    _this.openSubmission = _this.openSubmission.bind(_assertThisInitialized(_this));
-    return _this;
-  } // sidebarContentClick(e) {
-  //     this.state.sidebarContent === "boxes"
-  //         ? this.setState({ sidebarContent: "subs" })
-  //         : this.setState({ sidebarContent: "boxes" });
-  // }
-
+    return _possibleConstructorReturn(this, _getPrototypeOf(Sidebar).call(this, props));
+  }
 
   _createClass(Sidebar, [{
-    key: "showBox",
-    value: function showBox() {
-      var _this2 = this;
-
-      var content;
-      var boxes = this.props.boxes;
-      var boxIds = Object.keys(boxes);
-
-      if (boxIds.length) {
-        content = boxIds.map(function (id) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            key: id,
-            onClick: _this2.showSubmissions(id)
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, boxes[id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, boxes[id].description));
-        });
-      }
-
-      return content;
-    }
-  }, {
-    key: "showSubmissions",
-    value: function showSubmissions(id) {
-      var _this3 = this;
-
-      this.props.boxes[id].submissionIds.map(function (id) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: id,
-          onClick: _this3.openSubmission(id)
-        }, _this3.props.submissions[id].title);
-      });
-    }
-  }, {
-    key: "openSubmission",
-    value: function openSubmission(subId) {
-      this.props.history.push("/learn/submission/".concat(subId));
-    }
-  }, {
     key: "render",
     value: function render() {
-      // let content = this.showBox();
-      // this.state.sidebarContent === "boxes"
-      //     ? content = <Boxes />
-      //     : content = <Submissions id={}/>;
+      var _this = this;
+
+      var content = Object.keys(this.props.boxes).map(function (id) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_box_box_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: id,
+          box: _this.props.boxes[id],
+          submissions: _this.props.submissions
+        });
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "sidebar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Submission Boxes"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, content));
     }
   }]);
 
