@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import RichTextEditor from "react-rte";
 
 class SubmissionForm extends React.Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class SubmissionForm extends React.Component {
       answer: this.props.submission.answer || "",
       box_id: this.props.boxId || 1,
       submittor_id: this.props.currentUserId || "",
+      test: RichTextEditor.createEmptyValue(),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
+    this.updateTextEditor = this.updateTextEditor.bind(this);
   }
 
   componentDidMount() {
@@ -32,10 +35,14 @@ class SubmissionForm extends React.Component {
     }
   }
 
-  update(field) {
-    return (e) => {
-      this.setState({ [field]: e.target.value });
-    };
+  update(e) {
+    const field = e.target.id;
+    debugger
+    this.setState({ [field]: e.target.value });
+  }
+
+  updateTextEditor(editorValue) {
+    this.setState({ test: editorValue });
   }
 
   render() {
@@ -53,27 +60,32 @@ class SubmissionForm extends React.Component {
           <input 
             id="title"
             type="text"
-            onChange={this.update("title")}
+            onChange={this.update}
             value={this.state.title}
           />
           <label htmlFor="body">Problem</label>
           <input 
             id="body"
             type="textarea"
-            onChange={this.update("body")}
+            onChange={this.update}
             value={this.state.body}
           />
           <label htmlFor="answer">Solution</label>
           <input 
             id="answer"
             type="textarea"
-            onChange={this.update("answer")}
+            onChange={this.update}
             value={this.state.answer}
           />
           <input type="submit" value="Submit" className="sub-button"/>
         </form>
 
         {returnLink}
+        <RichTextEditor
+          name="body"
+          value={this.state.test}
+          onChange={this.updateTextEditor}>
+        </RichTextEditor>
       </section>
     );
   }

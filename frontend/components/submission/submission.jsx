@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import NavbarContainer from "../navbar/navbar_container";
+import TextEditor from "../rich_text_editor/rte";
 import { merge } from 'lodash';
 
 class Submission extends React.Component {
@@ -99,6 +100,7 @@ class Submission extends React.Component {
           I was Incorrect.
         </button>
         <Link to='/learn' className="back-link">Back to Index Page</Link>
+        <TextEditor />
       </section>
     );
   }
