@@ -8,15 +8,15 @@ class SubmissionForm extends React.Component {
     this.state = {
       id: this.props.submissionId || "",
       title: this.props.submission.title || "",
-      body: this.props.submission.body || "",
-      answer: this.props.submission.answer || "",
+      body: RichTextEditor.createEmptyValue(),
+      answer: RichTextEditor.createEmptyValue(),
       box_id: this.props.boxId || 1,
       submittor_id: this.props.currentUserId || "",
-      test: RichTextEditor.createEmptyValue(),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.updateTextEditor = this.updateTextEditor.bind(this);
+    this.updateBody = this.updateBody.bind(this);
+    this.updateAnswer = this.updateAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +27,11 @@ class SubmissionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const sub = Object.assign({}, this.state);
+    debugger
+    let sub = Object.assign({}, this.state);
+    sub.body = this.state.body.toString("html");
+    sub.answer = this.state.answer.toString("html");
+    debugger
     if (this.props.formType === "edit") {
       this.props.updateSub(sub).then(() => this.props.history.push(`/learn/submission/${this.props.submissionId}`));
     } else if (this.props.formType === "new") {
@@ -37,12 +41,15 @@ class SubmissionForm extends React.Component {
 
   update(e) {
     const field = e.target.id;
-    debugger
     this.setState({ [field]: e.target.value });
   }
 
-  updateTextEditor(editorValue) {
-    this.setState({ test: editorValue });
+  updateBody(value) {
+    this.setState({ body: value });
+  }
+
+  updateAnswer(value) {
+    this.setState({ answer: value });
   }
 
   render() {
@@ -64,28 +71,34 @@ class SubmissionForm extends React.Component {
             value={this.state.title}
           />
           <label htmlFor="body">Problem</label>
-          <input 
+          {/* <input 
             id="body"
             type="textarea"
             onChange={this.update}
             value={this.state.body}
-          />
+          /> */}
+          <RichTextEditor
+            name="body"
+            value={this.state.body}
+            onChange={this.updateBody}>
+          </RichTextEditor>
           <label htmlFor="answer">Solution</label>
-          <input 
+          {/* <input 
             id="answer"
             type="textarea"
             onChange={this.update}
             value={this.state.answer}
-          />
+          /> */}
+          <RichTextEditor
+            name="answer"
+            value={this.state.answer}
+            onChange={this.updateAnswer}>
+          </RichTextEditor>
           <input type="submit" value="Submit" className="sub-button"/>
         </form>
 
         {returnLink}
-        <RichTextEditor
-          name="body"
-          value={this.state.test}
-          onChange={this.updateTextEditor}>
-        </RichTextEditor>
+
       </section>
     );
   }

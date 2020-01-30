@@ -1554,7 +1554,9 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "submission"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "sub-edit-btns"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn/submission/".concat(this.props.submissionId, "/edit"),
         className: "sub-button"
       }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1574,7 +1576,7 @@ function (_React$Component) {
       }, "I was Incorrect."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/learn",
         className: "back-link"
-      }, "Back to Index Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rich_text_editor_rte__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      }, "Back to Index Page"));
     }
   }]);
 
@@ -1701,15 +1703,15 @@ function (_React$Component) {
     _this.state = {
       id: _this.props.submissionId || "",
       title: _this.props.submission.title || "",
-      body: _this.props.submission.body || "",
-      answer: _this.props.submission.answer || "",
+      body: react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createEmptyValue(),
+      answer: react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createEmptyValue(),
       box_id: _this.props.boxId || 1,
-      submittor_id: _this.props.currentUserId || "",
-      test: react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createEmptyValue()
+      submittor_id: _this.props.currentUserId || ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.updateTextEditor = _this.updateTextEditor.bind(_assertThisInitialized(_this));
+    _this.updateBody = _this.updateBody.bind(_assertThisInitialized(_this));
+    _this.updateAnswer = _this.updateAnswer.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1726,7 +1728,11 @@ function (_React$Component) {
       var _this2 = this;
 
       e.preventDefault();
+      debugger;
       var sub = Object.assign({}, this.state);
+      sub.body = this.state.body.toString("html");
+      sub.answer = this.state.answer.toString("html");
+      debugger;
 
       if (this.props.formType === "edit") {
         this.props.updateSub(sub).then(function () {
@@ -1742,14 +1748,20 @@ function (_React$Component) {
     key: "update",
     value: function update(e) {
       var field = e.target.id;
-      debugger;
       this.setState(_defineProperty({}, field, e.target.value));
     }
   }, {
-    key: "updateTextEditor",
-    value: function updateTextEditor(editorValue) {
+    key: "updateBody",
+    value: function updateBody(value) {
       this.setState({
-        test: editorValue
+        body: value
+      });
+    }
+  }, {
+    key: "updateAnswer",
+    value: function updateAnswer(value) {
+      this.setState({
+        answer: value
       });
     }
   }, {
@@ -1783,27 +1795,21 @@ function (_React$Component) {
         value: this.state.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "body"
-      }, "Problem"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "body",
-        type: "textarea",
-        onChange: this.update,
-        value: this.state.body
+      }, "Problem"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        name: "body",
+        value: this.state.body,
+        onChange: this.updateBody
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "answer"
-      }, "Solution"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "answer",
-        type: "textarea",
-        onChange: this.update,
-        value: this.state.answer
+      }, "Solution"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        name: "answer",
+        value: this.state.answer,
+        onChange: this.updateAnswer
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         value: "Submit",
         className: "sub-button"
-      })), returnLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        name: "body",
-        value: this.state.test,
-        onChange: this.updateTextEditor
-      }));
+      })), returnLink);
     }
   }]);
 
@@ -2504,6 +2510,7 @@ var findSubmission = function findSubmission(id) {
   });
 };
 var createSubmission = function createSubmission(submission) {
+  debugger;
   return $.ajax({
     method: "POST",
     url: "api/submissions",

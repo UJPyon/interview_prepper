@@ -69,7 +69,7 @@ class Submission extends React.Component {
     return (
       <section className="submission">
         <h2>{title}</h2>
-        <div>
+        <div className="sub-edit-btns">
           <Link
             to={`/learn/submission/${this.props.submissionId}/edit`}
             className="sub-button">
@@ -100,7 +100,6 @@ class Submission extends React.Component {
           I was Incorrect.
         </button>
         <Link to='/learn' className="back-link">Back to Index Page</Link>
-        <TextEditor />
       </section>
     );
   }

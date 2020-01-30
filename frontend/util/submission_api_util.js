@@ -13,6 +13,7 @@ export const findSubmission = id => {
 };
 
 export const createSubmission = submission => {
+  debugger
   return $.ajax({
     method: "POST",
     url: "api/submissions",

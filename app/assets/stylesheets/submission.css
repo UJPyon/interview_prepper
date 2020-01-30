@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 
-.submission > div:first-of-type {
+.sub-edit-btns {
   display: flex;
 }
 
@@ -13,7 +13,7 @@
   display: flex;
 }
 
-.submission > div:first-of-type > a {
+.sub-edit-btns > a {
   margin-right: 20px;
 }
 
