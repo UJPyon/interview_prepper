@@ -8,18 +8,18 @@
 .sub-edit-btns {
   display: flex;
 }
-
+/* 
 .submission > div:nth-of-type(2) {
   display: flex;
-}
+} */
 
 .sub-edit-btns > a {
   margin-right: 20px;
 }
-
+/* 
 .submission > div:nth-of-type(2) > button {
   margin-right: 20px;
-}
+} */
 
 .submission > h2 {
   padding-top: 30px;
