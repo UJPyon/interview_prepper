@@ -33,6 +33,11 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.submission > div {
+  margin-top: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .sub-button {
   background: mediumpurple;
   height: 50px;
@@ -87,4 +92,36 @@
 
 .answerhide {
   display: none;
+}
+
+/* Code below is for styling all outputs of rich text editor when showing submissions: */
+
+.rte strong {
+  font-weight: bold;
+}
+
+.rte code {
+  background: #e6e6e6;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.rte em {
+  font-style: italic;
+}
+
+.rte ul {
+  list-style-type: circle;
+}
+
+.rte ol {
+  list-style-type: lower-alpha;
+}
+
+.rte blockquote {
+  display: block;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 40px;
+  margin-right: 40px;
 }

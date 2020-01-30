@@ -81,8 +81,14 @@ class Submission extends React.Component {
             Delete Submission
           </button>
         </div>
-        <p>{body}</p>
-        <p className={"answer" + this.state.class}>{answer}</p>
+        <div 
+          dangerouslySetInnerHTML={{ __html: body }}
+          className="rte">
+        </div>
+        <div 
+          dangerouslySetInnerHTML={{ __html: answer }}
+          className={"rte answer" + this.state.class}>
+        </div>
         <button 
           onClick={this.handleAnswer} 
           className="sub-button">

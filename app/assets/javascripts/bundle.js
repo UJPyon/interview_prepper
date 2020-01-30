@@ -1562,9 +1562,17 @@ function (_React$Component) {
       }, "Edit Submission"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleDelete,
         className: "sub-button"
-      }, "Delete Submission")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "answer" + this.state["class"]
-      }, answer), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Delete Submission")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: body
+        },
+        className: "rte"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: answer
+        },
+        className: "rte answer" + this.state["class"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleAnswer,
         className: "sub-button"
       }, this.state.answerButton), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
