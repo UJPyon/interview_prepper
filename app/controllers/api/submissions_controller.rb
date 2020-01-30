@@ -22,9 +22,7 @@ class Api::SubmissionsController < ApplicationController
   end
 
   def update
-    debugger
     @submission = Submission.find(params[:id])
-    debugger
     if @submission.update(submission_params)
       render :show
     else

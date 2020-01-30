@@ -27,7 +27,12 @@ class SessionForm extends React.Component {
       username: this.state.loginUsername,
       password: this.state.loginPassword,
     };
-    this.props.processLoginForm(user).then(() => this.props.history.push('/learn'));
+    this.props.processLoginForm(user).then(() => {
+      const main = document.getElementsByClassName("main-page");
+      main[0].style.zIndex = "5";
+      main[0].style.background = "white";
+      this.props.history.push('/learn')
+    });
   }
   
   handleSignup(e) {
@@ -36,7 +41,12 @@ class SessionForm extends React.Component {
       username: this.state.signupUsername,
       password: this.state.signupPassword,
     };
-    this.props.processSignupForm(user).then(() => this.props.history.push('/learn'));
+    this.props.processSignupForm(user).then(() => {
+      const main = document.getElementsByClassName("main-page");
+      main[0].style.zIndex = "5";
+      main[0].style.background = "white";
+      this.props.history.push('/learn')
+    });
   }
 
   update(field) {

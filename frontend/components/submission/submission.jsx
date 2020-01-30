@@ -42,15 +42,17 @@ class Submission extends React.Component {
   handleBoxMoveForward() {
     if (this.props.submission.box_id < 4) {
       let nextBoxId = this.props.submission.box_id + 1;
-      this.props.updateSub(merge(this.props.submission, { box_id: nextBoxId }));
+      this.props.updateSub(merge(this.props.submission, { box_id: nextBoxId }))
+        .then(sub => this.props.history.push('learn'));
+      }
+      console.log("correct");
     }
-    console.log("correct");
-  }
-
-  handleBoxMoveBackward() {
-    if (this.props.submission.box_id > 1) {
-      let prevBoxId = this.props.submission.box_id - 1;
-      this.props.updateSub(merge(this.props.submission, { box_id: prevBoxId }));
+    
+    handleBoxMoveBackward() {
+      if (this.props.submission.box_id > 1) {
+        let prevBoxId = this.props.submission.box_id - 1;
+        this.props.updateSub(merge(this.props.submission, { box_id: prevBoxId }))
+          .then(sub => this.props.history.push('learn'));
     }
     console.log("incorrect");
   }

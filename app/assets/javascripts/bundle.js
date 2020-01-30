@@ -812,6 +812,10 @@ function (_React$Component) {
     value: function handleLogout() {
       var _this2 = this;
 
+      var main = document.getElementsByClassName("main-page");
+      debugger;
+      main[0].style.zIndex = "-1";
+      main[0].style.background = "none";
       this.props.logout().then(function () {
         return _this2.props.history.push("/");
       });
@@ -1161,7 +1165,11 @@ function (_React$Component) {
         password: this.state.loginPassword
       };
       this.props.processLoginForm(user).then(function () {
-        return _this2.props.history.push('/learn');
+        var main = document.getElementsByClassName("main-page");
+        main[0].style.zIndex = "5";
+        main[0].style.background = "white";
+
+        _this2.props.history.push('/learn');
       });
     }
   }, {
@@ -1175,7 +1183,11 @@ function (_React$Component) {
         password: this.state.signupPassword
       };
       this.props.processSignupForm(user).then(function () {
-        return _this3.props.history.push('/learn');
+        var main = document.getElementsByClassName("main-page");
+        main[0].style.zIndex = "5";
+        main[0].style.background = "white";
+
+        _this3.props.history.push('/learn');
       });
     }
   }, {
@@ -1415,11 +1427,15 @@ function (_React$Component) {
   }, {
     key: "handleBoxMoveForward",
     value: function handleBoxMoveForward() {
+      var _this3 = this;
+
       if (this.props.submission.box_id < 4) {
         var nextBoxId = this.props.submission.box_id + 1;
         this.props.updateSub(Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.props.submission, {
           box_id: nextBoxId
-        }));
+        })).then(function (sub) {
+          return _this3.props.history.push('learn');
+        });
       }
 
       console.log("correct");
@@ -1427,11 +1443,15 @@ function (_React$Component) {
   }, {
     key: "handleBoxMoveBackward",
     value: function handleBoxMoveBackward() {
+      var _this4 = this;
+
       if (this.props.submission.box_id > 1) {
         var prevBoxId = this.props.submission.box_id - 1;
         this.props.updateSub(Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.props.submission, {
           box_id: prevBoxId
-        }));
+        })).then(function (sub) {
+          return _this4.props.history.push('learn');
+        });
       }
 
       console.log("incorrect");
@@ -2394,7 +2414,6 @@ var createSubmission = function createSubmission(submission) {
   });
 };
 var updateSubmission = function updateSubmission(submission) {
-  debugger;
   return $.ajax({
     method: "PATCH",
     url: "api/submissions/".concat(submission.id),
