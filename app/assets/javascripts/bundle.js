@@ -1442,7 +1442,6 @@ function (_React$Component) {
     value: function handleBoxMoveBackward() {
       if (this.props.submission.box_id > 1) {
         var prevBoxId = this.props.submission.box_id - 1;
-        debugger;
         this.props.updateSub(Object(lodash__WEBPACK_IMPORTED_MODULE_3__["merge"])(this.props.submission, {
           box_id: prevBoxId
         })).then(function (sub) {

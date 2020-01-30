@@ -51,7 +51,6 @@ class Submission extends React.Component {
     handleBoxMoveBackward() {
       if (this.props.submission.box_id > 1) {
         let prevBoxId = this.props.submission.box_id - 1;
-        debugger
         this.props.updateSub(merge(this.props.submission, { box_id: prevBoxId }))
           .then(sub => window.location.href = "/#/learn");
     }
