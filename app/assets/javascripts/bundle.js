@@ -530,14 +530,17 @@ function (_React$Component) {
       var _this2 = this;
 
       var subs = this.props.box.submissionIds.map(function (subId) {
-        debugger;
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: subId,
-          id: subId,
-          onClick: function onClick(e) {
-            return _this2.openSubmission(e);
-          }
-        }, _this2.props.submissions[subId].title);
+        if (!_this2.props.submissions[subId]) {
+          return "";
+        } else {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: subId,
+            id: subId,
+            onClick: function onClick(e) {
+              return _this2.openSubmission(e);
+            }
+          }, _this2.props.submissions[subId].title);
+        }
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "sidebar-box",
