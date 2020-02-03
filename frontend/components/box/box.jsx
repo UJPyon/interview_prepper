@@ -23,6 +23,7 @@ class Box extends React.Component {
 
   render() {
     let subs = this.props.box.submissionIds.map(subId => {
+      debugger
       return (
         <li 
           key={subId} 

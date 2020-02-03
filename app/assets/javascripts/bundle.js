@@ -530,6 +530,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var subs = this.props.box.submissionIds.map(function (subId) {
+        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: subId,
           id: subId,
