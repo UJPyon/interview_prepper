@@ -6,6 +6,6 @@
 .main-page {
     width: 100%;
     z-index: 5;
-    background: white;
+    background: #edeff0;
     overflow-y: scroll;
 }

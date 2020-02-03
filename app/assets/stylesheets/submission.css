@@ -1,12 +1,15 @@
 .submission {
-  margin-top: 60px;
-  margin-left: 60px;
   display: flex;
   flex-direction: column;
+  margin: 50px;
+  background: white;
+  border-top: 5px solid rgba(90,5,177,1);
+  border-radius: 5px;
 }
 
 .sub-edit-btns {
   display: flex;
+  margin: 0 40px;
 }
 /* 
 .submission > div:nth-of-type(2) {
@@ -26,6 +29,12 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
   font-weight: bold;
+  background: #fafafa;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  border-bottom: 1px solid #eceded;
 }
 
 .submission > p {
@@ -47,7 +56,7 @@
   text-decoration: none;
   font-size: 13px; 
   font-family: Arial, Helvetica, sans-serif;
-  margin-top: 20px;
+  margin: 20px 0 0 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +69,7 @@
 .back-link {
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
-  margin-top: 30px;
+  margin: 40px;
   color: purple;
 }
 
@@ -95,6 +104,15 @@
 }
 
 /* Code below is for styling all outputs of rich text editor when showing submissions: */
+
+.rte {
+  border: 1px solid #eceded;
+  background: #fafafa;
+  border-radius: 4px;
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 40px;
+}
 
 .rte strong {
   font-weight: bold;
