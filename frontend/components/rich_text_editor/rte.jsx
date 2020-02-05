@@ -8,7 +8,7 @@ class TextEditor extends Component {
         debugger
         this.state = {
             onChange: PropTypes.func,
-            value: RichTextEditor.createEmptyValue()
+            value: this.props.value
         };
         this.onChange = this.onChange.bind(this);
     };
@@ -26,6 +26,7 @@ class TextEditor extends Component {
     };
 
     render() {
+        debugger
         return (
             <RichTextEditor
                 value={this.state.value}

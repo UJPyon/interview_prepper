@@ -1114,7 +1114,7 @@ function (_Component) {
     debugger;
     _this.state = {
       onChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
-      value: react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createEmptyValue()
+      value: _this.props.value
     };
     _this.onChange = _this.onChange.bind(_assertThisInitialized(_this));
     return _this;
@@ -1137,6 +1137,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
         value: this.state.value,
         onChange: this.onChange
@@ -1732,21 +1733,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       this.props.fetchAllUsers();
       this.props.fetchAllSubs();
-      this.props.fetchAllBoxes(); // const that = this;
-      // if (this.props.formType === "edit") {
-      //   this.props.receiveSub(this.props.submissionId).then(res => {
-      //     debugger
-      //     const title = res.sub.title;
-      //     const body = RichTextEditor.createValueFromString(res.sub.body, 'html');
-      //     const answer = RichTextEditor.createValueFromString(res.sub.answer, 'html');
-      //     debugger
-      //     that.setState({ 
-      //       title: title, 
-      //       body: body, 
-      //       answer: answer
-      //     });
-      //   });
-      // }
+      this.props.fetchAllBoxes();
     }
   }, {
     key: "handleSubmit",
@@ -1816,18 +1803,18 @@ function (_React$Component) {
         id: "title",
         type: "text",
         onChange: this.update,
-        value: this.state.title
+        value: this.props.formType === "edit" ? this.props.submission.title : this.state.title
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "body"
       }, "Problem"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
         name: "body",
-        value: this.props.formType === "edit" ? react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createValueFromString(res.sub.body, 'html') : this.state.body,
+        value: this.props.formType === "edit" ? react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createValueFromString(this.props.submission.body, 'html') : react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createEmptyValue(),
         onChange: this.updateBody
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "answer"
       }, "Solution"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
         name: "answer",
-        value: this.props.formType === "edit" ? react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createValueFromString(res.sub.answer, 'html') : this.state.answer,
+        value: this.props.formType === "edit" ? react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createValueFromString(this.props.submission.answer, 'html') : react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createEmptyValue(),
         onChange: this.updateAnswer
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
