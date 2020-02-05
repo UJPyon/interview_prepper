@@ -817,7 +817,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var main = document.getElementsByClassName("main-page");
-      main[0].style.zIndex = "-1";
+      main[0].style.zIndex = "-10";
       main[0].style.background = "none";
       this.props.logout().then(function () {
         return _this2.props.history.push("/");
@@ -1258,7 +1258,7 @@ function (_React$Component) {
       this.props.processLoginForm(user).then(function () {
         var main = document.getElementsByClassName("main-page");
         main[0].style.zIndex = "5";
-        main[0].style.background = "white";
+        main[0].style.background = "#edeff0";
 
         _this2.props.history.push('/learn');
       });
@@ -1276,7 +1276,7 @@ function (_React$Component) {
       this.props.processSignupForm(user).then(function () {
         var main = document.getElementsByClassName("main-page");
         main[0].style.zIndex = "5";
-        main[0].style.background = "white";
+        main[0].style.background = "#edeff0";
 
         _this3.props.history.push('/learn');
       });
@@ -1730,29 +1730,42 @@ function (_React$Component) {
   _createClass(SubmissionForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.props.fetchAllUsers();
       this.props.fetchAllSubs();
       this.props.fetchAllBoxes();
+
+      if (this.props.formType === "edit") {
+        debugger;
+        this.props.receiveSub(this.props.submissionId).then(function (sub) {
+          debugger;
+
+          _this2.setState({
+            title: sub.title,
+            body: sub.body,
+            answer: sub.answer
+          });
+        });
+      }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault();
-      debugger;
       var sub = Object.assign({}, this.state);
       sub.body = this.state.body.toString("html");
       sub.answer = this.state.answer.toString("html");
-      debugger;
 
       if (this.props.formType === "edit") {
         this.props.updateSub(sub).then(function () {
-          return _this2.props.history.push("/learn/submission/".concat(_this2.props.submissionId));
+          return _this3.props.history.push("/learn/submission/".concat(_this3.props.submissionId));
         });
       } else if (this.props.formType === "new") {
         this.props.createSub(sub).then(function (result) {
-          return _this2.props.history.push("/learn/submission/".concat(result.sub.id));
+          return _this3.props.history.push("/learn/submission/".concat(result.sub.id));
         });
       }
     }

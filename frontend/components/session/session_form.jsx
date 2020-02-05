@@ -30,7 +30,7 @@ class SessionForm extends React.Component {
     this.props.processLoginForm(user).then(() => {
       const main = document.getElementsByClassName("main-page");
       main[0].style.zIndex = "5";
-      main[0].style.background = "white";
+      main[0].style.background = "#edeff0";
       this.props.history.push('/learn')
     });
   }
@@ -44,7 +44,7 @@ class SessionForm extends React.Component {
     this.props.processSignupForm(user).then(() => {
       const main = document.getElementsByClassName("main-page");
       main[0].style.zIndex = "5";
-      main[0].style.background = "white";
+      main[0].style.background = "#edeff0";
       this.props.history.push('/learn')
     });
   }

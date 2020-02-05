@@ -23,15 +23,20 @@ class SubmissionForm extends React.Component {
     this.props.fetchAllUsers();
     this.props.fetchAllSubs();
     this.props.fetchAllBoxes();
+    if (this.props.formType === "edit") {
+      debugger
+      this.props.receiveSub(this.props.submissionId).then(sub => {
+        debugger
+        this.setState({ title: sub.title, body: sub.body, answer: sub.answer });
+      });
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
     let sub = Object.assign({}, this.state);
     sub.body = this.state.body.toString("html");
     sub.answer = this.state.answer.toString("html");
-    debugger
     if (this.props.formType === "edit") {
       this.props.updateSub(sub).then(() => this.props.history.push(`/learn/submission/${this.props.submissionId}`));
     } else if (this.props.formType === "new") {

@@ -15,7 +15,7 @@ class Navbar extends React.Component {
 
   handleLogout() {
     const main = document.getElementsByClassName("main-page");
-    main[0].style.zIndex = "-1";
+    main[0].style.zIndex = "-10";
     main[0].style.background = "none";
     this.props.logout().then(() => this.props.history.push("/"));
   }
