@@ -23,13 +23,21 @@ class SubmissionForm extends React.Component {
     this.props.fetchAllUsers();
     this.props.fetchAllSubs();
     this.props.fetchAllBoxes();
-    if (this.props.formType === "edit") {
-      debugger
-      this.props.receiveSub(this.props.submissionId).then(sub => {
-        debugger
-        this.setState({ title: sub.title, body: sub.body, answer: sub.answer });
-      });
-    }
+    // const that = this;
+    // if (this.props.formType === "edit") {
+    //   this.props.receiveSub(this.props.submissionId).then(res => {
+    //     debugger
+    //     const title = res.sub.title;
+    //     const body = RichTextEditor.createValueFromString(res.sub.body, 'html');
+    //     const answer = RichTextEditor.createValueFromString(res.sub.answer, 'html');
+    //     debugger
+    //     that.setState({ 
+    //       title: title, 
+    //       body: body, 
+    //       answer: answer
+    //     });
+    //   });
+    // }
   }
 
   handleSubmit(e) {
@@ -84,7 +92,9 @@ class SubmissionForm extends React.Component {
           /> */}
           <RichTextEditor
             name="body"
-            value={this.state.body}
+            value={this.props.formType === "edit" 
+              ? RichTextEditor.createValueFromString(res.sub.body, 'html')
+              : this.state.body}
             onChange={this.updateBody}>
           </RichTextEditor>
           <label htmlFor="answer">Solution</label>
@@ -96,7 +106,9 @@ class SubmissionForm extends React.Component {
           /> */}
           <RichTextEditor
             name="answer"
-            value={this.state.answer}
+            value={this.props.formType === "edit"
+                ? RichTextEditor.createValueFromString(res.sub.answer, 'html')
+                : this.state.answer}
             onChange={this.updateAnswer}>
           </RichTextEditor>
           <input type="submit" value="Submit" className="sub-button"/>

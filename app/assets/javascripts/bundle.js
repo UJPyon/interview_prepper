@@ -1730,29 +1730,28 @@ function (_React$Component) {
   _createClass(SubmissionForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
       this.props.fetchAllUsers();
       this.props.fetchAllSubs();
-      this.props.fetchAllBoxes();
-
-      if (this.props.formType === "edit") {
-        debugger;
-        this.props.receiveSub(this.props.submissionId).then(function (sub) {
-          debugger;
-
-          _this2.setState({
-            title: sub.title,
-            body: sub.body,
-            answer: sub.answer
-          });
-        });
-      }
+      this.props.fetchAllBoxes(); // const that = this;
+      // if (this.props.formType === "edit") {
+      //   this.props.receiveSub(this.props.submissionId).then(res => {
+      //     debugger
+      //     const title = res.sub.title;
+      //     const body = RichTextEditor.createValueFromString(res.sub.body, 'html');
+      //     const answer = RichTextEditor.createValueFromString(res.sub.answer, 'html');
+      //     debugger
+      //     that.setState({ 
+      //       title: title, 
+      //       body: body, 
+      //       answer: answer
+      //     });
+      //   });
+      // }
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
+      var _this2 = this;
 
       e.preventDefault();
       var sub = Object.assign({}, this.state);
@@ -1761,11 +1760,11 @@ function (_React$Component) {
 
       if (this.props.formType === "edit") {
         this.props.updateSub(sub).then(function () {
-          return _this3.props.history.push("/learn/submission/".concat(_this3.props.submissionId));
+          return _this2.props.history.push("/learn/submission/".concat(_this2.props.submissionId));
         });
       } else if (this.props.formType === "new") {
         this.props.createSub(sub).then(function (result) {
-          return _this3.props.history.push("/learn/submission/".concat(result.sub.id));
+          return _this2.props.history.push("/learn/submission/".concat(result.sub.id));
         });
       }
     }
@@ -1822,13 +1821,13 @@ function (_React$Component) {
         htmlFor: "body"
       }, "Problem"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
         name: "body",
-        value: this.state.body,
+        value: this.props.formType === "edit" ? react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createValueFromString(res.sub.body, 'html') : this.state.body,
         onChange: this.updateBody
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "answer"
       }, "Solution"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_rte__WEBPACK_IMPORTED_MODULE_2___default.a, {
         name: "answer",
-        value: this.state.answer,
+        value: this.props.formType === "edit" ? react_rte__WEBPACK_IMPORTED_MODULE_2___default.a.createValueFromString(res.sub.answer, 'html') : this.state.answer,
         onChange: this.updateAnswer
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
