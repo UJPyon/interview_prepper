@@ -44,7 +44,7 @@ class Box extends React.Component {
         <ul className={this.state.boxSubs === "show" ? "subs-show" : "subs-hide"}>
           {subs} 
         </ul>
-      </li>
+      </li> 
     );
   }
 }
