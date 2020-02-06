@@ -1743,22 +1743,7 @@ function (_React$Component) {
           body: body,
           answer: answer
         });
-      } // const that = this;
-      // if (this.props.formType === "edit") {
-      //   this.props.receiveSub(this.props.submissionId).then(res => {
-      //     debugger
-      //     const title = res.sub.title;
-      //     const body = RichTextEditor.createValueFromString(res.sub.body, 'html');
-      //     const answer = RichTextEditor.createValueFromString(res.sub.answer, 'html');
-      //     debugger
-      //     that.setState({ 
-      //       title: title, 
-      //       body: body, 
-      //       answer: answer
-      //     });
-      //   });
-      // }
-
+      }
     }
   }, {
     key: "handleSubmit",

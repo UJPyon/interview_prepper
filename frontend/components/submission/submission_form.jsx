@@ -29,21 +29,6 @@ class SubmissionForm extends React.Component {
       const answer = RichTextEditor.createValueFromString(submission.answer, 'html');
       this.setState({ body: body, answer: answer });
     }
-    // const that = this;
-    // if (this.props.formType === "edit") {
-    //   this.props.receiveSub(this.props.submissionId).then(res => {
-    //     debugger
-    //     const title = res.sub.title;
-    //     const body = RichTextEditor.createValueFromString(res.sub.body, 'html');
-    //     const answer = RichTextEditor.createValueFromString(res.sub.answer, 'html');
-    //     debugger
-    //     that.setState({ 
-    //       title: title, 
-    //       body: body, 
-    //       answer: answer
-    //     });
-    //   });
-    // }
   }
 
   handleSubmit(e) {
@@ -90,24 +75,12 @@ class SubmissionForm extends React.Component {
             value={this.state.title}
           />
           <label htmlFor="body">Problem</label>
-          {/* <input 
-            id="body"
-            type="textarea"
-            onChange={this.update}
-            value={this.state.body}
-          /> */}
           <RichTextEditor
             name="body"
             value={this.state.body}
             onChange={this.updateBody}>
           </RichTextEditor>
           <label htmlFor="answer">Solution</label>
-          {/* <input 
-            id="answer"
-            type="textarea"
-            onChange={this.update}
-            value={this.state.answer}
-          /> */}
           <RichTextEditor
             name="answer"
             value={this.state.answer}
