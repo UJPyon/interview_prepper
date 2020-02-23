@@ -97,6 +97,7 @@
 
 .answershow {
   display: flex;
+  flex-direction: column;
 }
 
 .answerhide {
